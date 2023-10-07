@@ -1,0 +1,35 @@
+{
+  "We Are Engineer": {
+    "anchorPoint": "MIDDLECENTER",
+    "keyframes": {
+      "y": [
+        {
+          "id": "rqaEgXuujnN7",
+          "ms": 0,
+          "property": "y",
+          "value": 200,
+          "easing": "linear",
+          "easingCurve": [
+            0.42,
+            0,
+            0.58,
+            1
+          ]
+        },
+        {
+          "id": "GcNKH6ci2dvF",
+          "ms": 2002,
+          "property": "y",
+          "value": 63,
+          "easing": "linear",
+          "easingCurve": [
+            0.42,
+            0,
+            0.58,
+            1
+          ]
+        }
+      ]
+    }
+  }
+}

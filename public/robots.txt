@@ -1,0 +1,14 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /signup/success
+
+# Host
+Host: https://www.weareengineer.com
+
+# Sitemaps
+Sitemap: https://www.weareengineer.com/sitemap.xml
+Sitemap: https://www.weareengineer.com/server-sitemap.xml

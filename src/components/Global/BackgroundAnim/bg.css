@@ -1,0 +1,28 @@
+@keyframes slide {
+  0% {
+    transform: translate(0);
+  }
+  50% {
+    transform: translate(-1040px); /* The image width */
+  }
+  75% {
+    transform: translate(-540px); /* The image width */
+  }
+  100% {
+    transform: translate(0); /* The image width */
+  }
+}
+@keyframes slideReverse {
+  0% {
+    transform: translate(0);
+  }
+  50% {
+    transform: translate(-1040px);
+  }
+  75% {
+    transform: translate(-540px);
+  }
+  100% {
+    transform: translate(0); /* The image width */
+  }
+}

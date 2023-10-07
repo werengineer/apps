@@ -1,0 +1,36 @@
+{
+    "name": "Kanji",
+    "content": [
+        {
+            "name": "Kanji",
+            "position": 1,
+            "description": "Kanji safdsjghfjsdf asfgjhdsvgf",
+            "tasks": [
+                {
+                    "name": "asdas",
+                    "position": 1,
+                    "tag": "asdasd",
+                    "content": "description",
+                    "links": [
+                        "...yt video link or article"
+                    ],
+                    "users": [
+                        ""
+                    ]
+                }
+            ],
+            "tags": [
+                "asdasd"
+            ],
+            "users": [
+                ""
+            ]
+        }
+    ],
+    "inProgress": [
+        "...usersId"
+    ],
+    "done": [
+        "...usersId"
+    ]
+}
