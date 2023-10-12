@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { TaskChip } from "./TaskChip";
 import { achievementID, werID } from "@lib/achievementID";
 import { useCoinsStore } from "@store";
+import { Tooltip } from "@mui/material";
 
 export const ProfileCard = () => {
 	const engineer = getEngineer();
@@ -43,15 +44,22 @@ export const ProfileCard = () => {
 				<Typography fontSize={"18px"}>Profile</Typography>
 				<Box display={"flex"} alignItems={"center"} gap={"0.5vw"}>
 					<Image width={30} height={30} alt={"Axe img"} src={"/icons/Axe.svg"} />
-					<Typography fontSize={"13px"} color={"grey"}>
+					<Typography fontSize={"13px"} color={"grey"} >
 						WAE Coins {coins}
 					</Typography>
-					<Info
+					<Tooltip title={<span>{[<b>WAE Coins:</b>,<br />,"Engineer's currency.",
+					<br />,"Earned through activity and rewards."
+,<br />,"Participation in club events and competitions."
+,<br />,"Redeemable for cash prizes and offers."
+,<br />,"Receive 100 coins at every level."]}</span>} disableInteractive>
+<Info
 						sx={{
 							display: ["none", "flex"],
 							color: "grey"
 						}}
 					/>
+</Tooltip>
+					
 				</Box>
 			</Box>
 

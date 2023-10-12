@@ -10,6 +10,7 @@ import { useRecoilState } from "recoil";
 import { useQuestionStore } from "@store";
 
 export default function QuestionPage() {
+
 	const [open, setOpen] = useRecoilState(loginModalState);
 	const [skip, setSkip] = useState(0);
 	const [limit, setLimit] = useState(10);
@@ -20,8 +21,9 @@ export default function QuestionPage() {
 	const setQuestions = useQuestionStore((state) => state?.setQuestions);
 	const questions = useQuestionStore((state) => state?.questions);
 
+
 	const fetchQuestions = async () => {
-		var data = questions;
+		let data = questions;
 		setLoading(true);
 		try {
 			const questionsData = await axios.get(
@@ -32,6 +34,7 @@ export default function QuestionPage() {
 			}
 			data = questions.concat(questionsData.data);
 			setSkip(skip + 10);
+			
 			setQuestions(data);
 		} catch (error) {
 			console.log("questions getServerSideProps", error);
@@ -80,6 +83,7 @@ export default function QuestionPage() {
 							pr: [0, 0, 0]
 						}}
 					>
+					
 						<QuestionsMain
 							questions={questions}
 							fetchQuestions={fetchQuestions}
