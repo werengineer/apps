@@ -201,7 +201,7 @@ export const Navbar = () => {
 												borderRadius: "25px"
 											}}
 										>
-											<Typography fontSize={["12px", "15px"]}>Signup</Typography>
+											<Typography fontSize={["12px", "15px"]}>SignUp</Typography>
 										</Button>
 									</Box>
 								) : pathName === "/signup" ? (
@@ -261,7 +261,7 @@ export const Navbar = () => {
 												borderRadius: "25px"
 											}}
 										>
-											<Typography fontSize={["12px", "15px"]}>Login</Typography>
+											<Typography fontSize={["12px", "15px"]}>LogIn</Typography>
 										</Button>
 									</Box>
 								) : (
@@ -303,7 +303,7 @@ export const Navbar = () => {
 												borderRadius: "50px",
 											}}
 										>
-											<Typography>Login</Typography>
+											<Typography>LogIn</Typography>
 										</Button>
 									</>
 								)}
