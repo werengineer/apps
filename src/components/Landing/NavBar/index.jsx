@@ -1,5 +1,5 @@
 import { Logo } from "@components/Global";
-import { getEngineer } from "@cookies";
+import { getEngineer, logoutUser } from "@cookies";
 import { firebaseAuth } from "@fb";
 import { Book, Dashboard, DateRange, FormatBold, Logout, Timeline } from "@mui/icons-material";
 import {
@@ -15,10 +15,13 @@ import {
 	Tooltip,
 	Typography
 } from "@mui/material";
-import { removeCookies } from "cookies-next";
+// import { removeCookies } from "cookies-next";
 import { signOut } from "firebase/auth";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
+
+
+
 
 export const Navbar = () => {
 	const router = useRouter();
@@ -37,11 +40,12 @@ export const Navbar = () => {
 		setAnchorEl(null);
 	};
 	const logout = () => {
-		removeCookies("engineer");
-		signOut(firebaseAuth);
+	
+		// removeCookies("engineer");
+		logoutUser();
+		 signOut(firebaseAuth);
 		router.push("/signin");
 	};
-
 	useEffect(() => {
 		if (pathName === "/subscriptions") {
 			setSubscriptions(true);
@@ -338,7 +342,7 @@ export const Navbar = () => {
 									<MenuItem sx={{ justifyContent: "flex-start" }} onClick={() => logout()}>
 										<ListItem>
 											<Logout sx={{ mr: 2 }} fontSize="small" />
-											Logout
+										
 										</ListItem>
 									</MenuItem>
 								</Menu>
