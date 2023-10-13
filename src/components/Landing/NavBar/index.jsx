@@ -141,15 +141,46 @@ export const Navbar = () => {
 						{!engineer ? (
 							<>
 								{pathName === "/signin" ? (
-									<Box sx={{ display: "flex", alignItems: "center" }}>
-										<Typography
+									<Box sx={{
+										display: "flex",
+										alignItems: "center",
+										gap: "2vw"
+									}}
+									>
+										<Button
+											onClick={() => router.push("/questions")}
 											sx={{
-												fontSize: ["10px", "15px"],
-												width: ["35vw", "15vw"]
+												fontSize: "15px",
+												color: "#ffffff",
+												border: "1px solid #ffffff",
+												"&:hover": {
+													backgroundColor: "#ffffff",
+													color: "black"
+												},
+												fontWeight: 700,
+												paddingX: ["0px", "30px"],
+												borderRadius: "25px"
 											}}
 										>
-											Don&apos;t have an account?
-										</Typography>
+											<Typography fontSize={["12px", "15px"]}>Explore Questions</Typography>
+										</Button>
+										<Button
+											onClick={() => router.push("/stories")}
+											sx={{
+												fontSize: "15px",
+												color: "#ffffff",
+												border: "1px solid #ffffff",
+												"&:hover": {
+													backgroundColor: "#ffffff",
+													color: "black"
+												},
+												fontWeight: 700,
+												paddingX: ["0px", "30px"],
+												borderRadius: "25px"
+											}}
+										>
+											<Typography fontSize={["12px", "15px"]}>Explore Stories</Typography>
+										</Button>
 										<Button
 											onClick={() => router.push("/signup")}
 											sx={{
@@ -161,6 +192,7 @@ export const Navbar = () => {
 													color: "black"
 												},
 												fontWeight: 700,
+												paddingX: ["0px", "30px"],
 												borderRadius: "25px"
 											}}
 										>
@@ -175,13 +207,40 @@ export const Navbar = () => {
 											gap: "2vw"
 										}}
 									>
-										<Typography
+										<Button
+											onClick={() => router.push("/questions")}
 											sx={{
-												fontSize: ["10px", "15px"]
+												fontSize: "15px",
+												color: "#ffffff",
+												border: "1px solid #ffffff",
+												"&:hover": {
+													backgroundColor: "#ffffff",
+													color: "black"
+												},
+												fontWeight: 700,
+												paddingX: ["0px", "30px"],
+												borderRadius: "25px"
 											}}
 										>
-											Already have an account?
-										</Typography>
+											<Typography fontSize={["12px", "15px"]}>Explore Questions</Typography>
+										</Button>
+										<Button
+											onClick={() => router.push("/stories")}
+											sx={{
+												fontSize: "15px",
+												color: "#ffffff",
+												border: "1px solid #ffffff",
+												"&:hover": {
+													backgroundColor: "#ffffff",
+													color: "black"
+												},
+												fontWeight: 700,
+												paddingX: ["0px", "30px"],
+												borderRadius: "25px"
+											}}
+										>
+											<Typography fontSize={["12px", "15px"]}>Explore Stories</Typography>
+										</Button>
 										<Button
 											onClick={() => router.push("/signin")}
 											sx={{
@@ -197,7 +256,7 @@ export const Navbar = () => {
 												borderRadius: "25px"
 											}}
 										>
-											<Typography fontSize={["12px", "15px"]}>Signin</Typography>
+											<Typography fontSize={["12px", "15px"]}>Login</Typography>
 										</Button>
 									</Box>
 								) : (
@@ -220,7 +279,7 @@ export const Navbar = () => {
 												}
 											}}
 										>
-											Signup
+											SignUp
 										</Button>
 										<Button
 											onClick={() => router.push("/signin")}
@@ -238,7 +297,7 @@ export const Navbar = () => {
 												display: ["none", "flex"]
 											}}
 										>
-											<Typography>Signin</Typography>
+											<Typography>Login</Typography>
 										</Button>
 									</>
 								)}
