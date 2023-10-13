@@ -8,10 +8,28 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useSnackbar } from "notistack";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { googleSignin, signinNormal } from "./Functions";
 
 export const SignInPage = () => {
+
+	
+	useEffect(() => {
+		const token = sessionStorage.getItem('userKey');
+		
+		if (token !== undefined) {
+			try {
+			  const parsedData = JSON.parse(token);
+			  if (parsedData?._id) {
+				router.push('/dashboard');
+			  }
+			} catch (error) {
+			  console.error("Error parsing JSON:", error);
+			}
+		  }
+		  
+	}, [])
+
 	const form = useForm();
 	const router = useRouter();
 	const { enqueueSnackbar } = useSnackbar();

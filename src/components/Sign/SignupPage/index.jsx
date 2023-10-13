@@ -4,7 +4,7 @@ import { Formiz, useForm } from "@formiz/core";
 import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useSnackbar } from "notistack";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { googleSignup, prevStep, submitForm } from "./Functions";
 import Image from "next/image";
 import { Steps } from "./Steps";
@@ -19,6 +19,22 @@ import { otpModal } from "@atom";
 import { MobileVerificationModal } from "@components/Settings/EditProfile/MobileVerificationModal";
 
 export const SignUpPage = () => {
+	
+	useEffect(() => {
+		const token = sessionStorage.getItem('userKey');
+		
+		if (token !== undefined) {
+			try {
+			  const parsedData = JSON.parse(token);
+			  if (parsedData?._id) {
+				router.push('/dashboard');
+			  }
+			} catch (error) {
+			  console.error("Error parsing JSON:", error);
+			}
+		  }
+		  
+	}, [])
 	const form = useForm();
 	const context = React.useContext(SignupContext);
 	const { enqueueSnackbar } = useSnackbar();

@@ -44,6 +44,7 @@ export const Navbar = () => {
 		// removeCookies("engineer");
 		logoutUser();
 		 signOut(firebaseAuth);
+		 sessionStorage.clear();
 		router.push("/signin");
 	};
 	useEffect(() => {
@@ -343,7 +344,7 @@ export const Navbar = () => {
 									<MenuItem sx={{ justifyContent: "flex-start" }} onClick={() => logout()}>
 										<ListItem>
 											<Logout sx={{ mr: 2 }} fontSize="small" />
-										
+										Logout
 										</ListItem>
 									</MenuItem>
 								</Menu>
