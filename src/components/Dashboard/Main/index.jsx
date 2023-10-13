@@ -68,7 +68,7 @@ export const DashboardMain = () => {
 									cursor: "pointer"
 								}}
 							>
-								Sign In
+								Login
 							</Link>{" "}
 							now !
 						</Typography>

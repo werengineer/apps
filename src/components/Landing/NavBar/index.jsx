@@ -264,22 +264,22 @@ export const Navbar = () => {
 										<Button
 											onClick={() => router.push("/signup")}
 											sx={{
-												width: ["80px", "100px", "100px"],
-												border: "1px solid white",
-												borderRadius: "50px",
-												display: ["flex"],
-												color: "white",
-												padding: ["2px", "5px"],
-												paddingLeft: "15px",
-												paddingRight: "15px",
-												fontWeight: 700,
+												width: ["80px", "100px"],
+												fontSize: "15px",
+												color: "#ffffff",
 												"&:hover": {
 													backgroundColor: "#ffffff",
+													border: "1px solid #fff",
 													color: "black"
-												}
+												},
+												fontWeight: 700,
+												display: ["none", "flex"],
+												border: "1px solid white",
+												borderRadius: "50px",
 											}}
 										>
-											SignUp
+											<Typography>SignUp</Typography>
+
 										</Button>
 										<Button
 											onClick={() => router.push("/signin")}
@@ -293,8 +293,9 @@ export const Navbar = () => {
 													color: "black"
 												},
 												fontWeight: 700,
-												borderRadius: "25px",
-												display: ["none", "flex"]
+												display: ["none", "flex"],
+												border: "1px solid white",
+												borderRadius: "50px",
 											}}
 										>
 											<Typography>Login</Typography>
