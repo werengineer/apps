@@ -1,4 +1,4 @@
-import { getCookie, setCookie } from "cookies-next";
+import { getCookie, setCookie,deleteCookie } from "cookies-next";
 
 export const getUser = () => {
 	const providerData =
@@ -14,5 +14,12 @@ export const getEngineer = () => {
 export const setEngineer = (engineerData) => {
 	const data = JSON.stringify(engineerData);
 	setCookie("engineer", data);
+	return;
+};
+
+
+export const logoutUser = () => {
+	// removeCookies("engineer");
+	deleteCookie("engineer")
 	return;
 };
