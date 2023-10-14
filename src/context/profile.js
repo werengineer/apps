@@ -47,10 +47,10 @@ const ProfileState = (props) => {
 	const { enqueueSnackbar } = useSnackbar();
 	const router = useRouter();
 
-	useEffect(() => {
+	// useEffect(() => {
 		
-		console.log(searchParams.get("tab"));
-	}, [searchParams.get("tab")]);
+	// 	console.log(searchParams.get("tab"));
+	// }, [searchParams.get("tab")]);
 
 	// console.log(searchParams.get("tab"));
 
