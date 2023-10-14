@@ -2,12 +2,12 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
-import { removeCookies } from "cookies-next";
+
 import { Avatar, Box, Button, Modal, Typography } from "@mui/material";
 import Link from "next/link";
 import { EmojiEvents, Logout, Settings } from "@mui/icons-material";
 import { userModal } from "@atom";
-import { getEngineer } from "@cookies";
+import { getEngineer,logoutUser } from "@cookies";
 import { signOut } from "firebase/auth";
 import { firebaseAuth } from "@fb";
 
@@ -15,8 +15,10 @@ export const ProfileMenu = () => {
 	const router = useRouter();
 	const engineer = getEngineer();
 	const [open, setOpen] = useRecoilState(userModal);
+	
 	const logout = () => {
-		removeCookies("engineer");
+		logoutUser()
+		sessionStorage.clear();
 		signOut(firebaseAuth);
 		router.push("/signin");
 	};

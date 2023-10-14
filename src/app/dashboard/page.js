@@ -1,30 +1,10 @@
 "use client";
 import { DashboardMain } from "@components";
 import Box from "@mui/material/Box";
-import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React from "react";
 // import { firebaseAuth } from "../firebase";
 
 export default function DashboardPage() {
-
-	const router = useRouter();
-
-	useEffect(() => {
-		const token = sessionStorage.getItem('userKey');
-		console.log("check")
-		
-		if (token !== undefined) {
-			try {
-			  const parsedData = JSON.parse(token);
-			  if (parsedData?._id) {
-				router.push('/dashboard');
-			  }
-			} catch (error) {
-			  console.error("Error parsing JSON:", error);
-			}
-		  }
-		  
-	}, []);
 
 
 	return (

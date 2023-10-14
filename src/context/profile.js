@@ -47,10 +47,10 @@ const ProfileState = (props) => {
 	const { enqueueSnackbar } = useSnackbar();
 	const router = useRouter();
 
-	useEffect(() => {
+	// useEffect(() => {
 		
-		console.log(searchParams.get("tab"));
-	}, [searchParams.get("tab")]);
+	// 	console.log(searchParams.get("tab"));
+	// }, [searchParams.get("tab")]);
 
 	// console.log(searchParams.get("tab"));
 
@@ -193,17 +193,37 @@ const ProfileState = (props) => {
 		setProfileLoader(true);
 		const reader = new FileReader();
 		if (e.target.files[0]) {
+
+
+			const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+			if (e.target.files[0].size > 5242880) {
+				enqueueSnackbar("File size exceeds 5 MiB", { variant: "error" });
+				setProfileLoader(false);
+				return;
+			  }
+			
+			  if (!allowedTypes.includes(e.target.files[0].type)) {
+				enqueueSnackbar("Invalid file type. Please upload a JPEG, PNG, or JPG file.", { variant: "error" });
+				e.target.files[0].value = "";
+				setProfileLoader(false);
+				return;
+			  }
+
+
 			reader.readAsDataURL(e.target.files[0]);
 		}
 		reader.onload = async (readerEvent) => {
-			setAvatar(readerEvent.currentTarget.result);
-			setProfile((prevProfile) => ({ ...profile, avatar: readerEvent.currentTarget.result }));
+			
+			var result2=readerEvent.currentTarget.result;
+
+			setAvatar(result2);
+			setProfile((prevProfile) => ({ ...profile, avatar: result2}));
 
 			try {
 				const response = await axios.post(
 					"https://api.cloudinary.com/v1_1/dju1qbtar/image/upload",
 					{
-						file: readerEvent.currentTarget.result,
+						file: result2,
 						api_key: NEXT_PUBLIC_CLOUDINARY_API_KEY,
 						upload_preset: NEXT_PUBLIC_UPLOAD_PRESET
 					}

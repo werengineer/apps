@@ -59,7 +59,7 @@ export const BlocksState = ({ children, parameters }) => {
 		if (currentBlock?.length === 0 && nextBlocks?.length > 0) {
 			const completedBlockArray = completedBlocks;
 			completedBlockArray.sort((a, b) => parseInt(a?.position) - parseInt(b?.position));
-			const pos = completedBlockArray.pop().position;
+			const pos = completedBlockArray?.pop().position;
 			nextBlocks.forEach((b) => console.log(parseInt(b?.position), parseInt(pos) + 1));
 			const nextBlock = nextBlocks.filter((b) => parseInt(b.position) === parseInt(pos) + 1);
 

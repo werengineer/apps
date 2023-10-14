@@ -2,13 +2,20 @@
 import "./globals.css";
 import { Router } from "next/router";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AllProviders } from "@components";
 import { Analytics } from "@vercel/analytics/react";
 
 export const myLink = "https://weareengineer.com";
 
 export default function RootLayout({ children }) {
+
+	// const [user,setUser]=useState();
+
+	// useEffect(()=>{
+	// 	setUser(sessionStorage.getItem('userKey'));
+	// },[]);
+
 	return (
 		<html>
 			<head>
