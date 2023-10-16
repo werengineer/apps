@@ -49,7 +49,7 @@ export const QuestionModal = () => {
 				setFiles([]);
 				setOpen(false);
 				console.log(que);
-				addQuestion({ data: que });
+				// addQuestion({ data: que });
 				const questions = await fetchEngineerQuestions(enqueueSnackbar);
 				console.log(questions);
 				if (questions.length === 1) {

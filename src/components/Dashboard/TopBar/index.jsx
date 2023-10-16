@@ -288,7 +288,18 @@ export const TopBar = () => {
 								borderRadius: "30px",
 								color: "#05D9D7"
 							}}
-							startAdornment={<SearchOutlined sx={{ marginRight: "1vw" }} />}
+							endAdornment={
+								<IconButton
+									onClick={() => goToSearch(searchValue)}
+									sx={{
+										display: ["flex"],
+										color: "#05D9D7",
+										marginRight: "-1vw"
+									}}
+								>
+									<SearchOutlined />
+								</IconButton>
+							}
 							value={searchValue}
 							onChange={(e) => setSearchValue(e.target.value)}
 							onKeyDown={(e) => goToSearch(e.target.value)}
