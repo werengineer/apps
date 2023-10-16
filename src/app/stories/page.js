@@ -30,7 +30,7 @@ export default function StoriesPage() {
 				setCompleted(true);
 			}
 			console.log(storiesData);
-			data = stories.concat(storiesData.data);
+			data = storiesData.data;
 			setStories(data);
 			console.log(stories);
 			setSkip(skip + 10);

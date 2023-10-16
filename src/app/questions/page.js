@@ -31,7 +31,7 @@ export default function QuestionPage() {
 			}
 			console.log(questions)
 			setSkip(skip + 10);
-			setQuestions(questions.concat(questionsData.data));
+			setQuestions(questionsData.data);
 		} catch (error) {
 			console.log("questions getServerSideProps", error);
 		} finally {
@@ -41,10 +41,8 @@ export default function QuestionPage() {
 	};
 
 	useEffect(() => {
-		setFirstLoad(true);
 		setQuestions([]);
 		fetchQuestions();
-		setFirstLoad(false);
 	}, []);
 
 	return (
