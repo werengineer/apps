@@ -94,7 +94,7 @@ export const Footer = () => {
 										color: "white"
 									}
 								}}
-								onClick={() => router.push("/dashboard")}
+								onClick={() => router.push("/")}
 							>
 								Go To DashBoard
 							</Button>

@@ -53,7 +53,7 @@ export const PayButton = ({ main }) => {
 						variant: "success"
 					});
 				}, 5000);
-				router.push("/dashboard");
+				router.push("/");
 			}
 		} catch (error) {
 			console.log(error);

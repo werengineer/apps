@@ -24,7 +24,7 @@ export const Logo = ({ index }) => {
 		<Tooltip title="We are engineer">
 			<Box
 				onClick={() => {
-					engineer !== false ? router.push("/dashboard") : router.push("/");
+					engineer !== false ? router.push("/") : router.push("/");
 				}}
 				sx={{
 					marginRight: "50px",

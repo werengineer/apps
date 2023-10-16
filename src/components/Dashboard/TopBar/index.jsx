@@ -39,7 +39,7 @@ import {
 import { ProfileMenu } from "../ProfileMenu";
 import { SidebarButton } from "../SidebarButton";
 import { Logo, NotificationSnackbar } from "@components/Global";
-import DashboardIcon from "@mui/icons-material/Dashboard";
+import DashboardIcon from "@mui/icons-material/";
 import {
 	loginModalState,
 	mobileDrawerState,
@@ -203,7 +203,7 @@ export const TopBar = () => {
 								display: ["flex", "none"],
 								p: 1
 							}}
-							onClick={() => router.push("/dashboard")}
+							onClick={() => router.push("/")}
 						>
 							<ArrowBackIcon />
 						</IconButton>

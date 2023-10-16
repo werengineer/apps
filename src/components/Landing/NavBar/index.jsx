@@ -335,7 +335,7 @@ export const Navbar = () => {
 									transformOrigin={{ horizontal: "right", vertical: "top" }}
 									anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
 								>
-									<MenuItem onClick={() => router.push("/dashboard")}>
+									<MenuItem onClick={() => router.push("/")}>
 										<ListItem>
 											<Dashboard fontSize="small" />
 										</ListItem>

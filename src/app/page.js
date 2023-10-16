@@ -17,7 +17,7 @@ export default function DashboardPage() {
 			try {
 			  const parsedData = JSON.parse(token);
 			  if (parsedData?._id) {
-				router.push('/dashboard');
+				router.push('/');
 			  }
 			} catch (error) {
 			  console.error("Error parsing JSON:", error);

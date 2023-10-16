@@ -1,4 +1,4 @@
-export * from "./Dashboard";
+export * from "./";
 export * from "./Global";
 export * from "./Landing";
 export * from "./Sign";
