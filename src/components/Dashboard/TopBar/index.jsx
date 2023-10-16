@@ -81,12 +81,12 @@ export const TopBar = () => {
 	const [loginModal, setLoginModal] = useRecoilState(loginModalState);
 	const [searchModal, setSearchModal] = useRecoilState(searchModalState);
 	const router = useRouter();
-	const { subscription } = getSubscription();
-	const [subed, setSubed] = useState();
-	const getSub = async () => {
-		setSubed(await subscription());
-	};
-	getSub();
+	// // const { subscription } = getSubscription();
+	// const [subed, setSubed] = useState();
+	// const getSub = async () => {
+	// 	setSubed(await subscription());
+	// };
+	// getSub();
 	const handleDrawerOpen = () => {
 		setOpen(true);
 	};
@@ -125,22 +125,22 @@ export const TopBar = () => {
 	// 	}
 	// 	setDrawerTab(pathName.split("/")[1][0].toUpperCase() + pathName.split("/")[1].slice(1));
 	// }, [pathName]);
-	const notification = useNotificationStore((state) => state?.notification);
-	const setNotiOpen = useNotificationStore((state) => state?.setNotificationSnackbar);
-	const setNotification = useNotificationStore((state) => state?.setNotificationData);
-	const getNotii = async () => {
-		const isSupportedBrowser = await isSupported();
-		if (isSupportedBrowser) {
-			onMessage(getMessaging(firebaseApp), (payload) => {
-				setNotiOpen();
-				const data = { title: payload.notification.title, message: payload.notification.body };
-				setNotification({ data });
-				var audio = document.getElementById("notiSound");
-				audio.play();
-			});
-		}
-	};
-	getNotii();
+	// const notification = useNotificationStore((state) => state?.notification);
+	// const setNotiOpen = useNotificationStore((state) => state?.setNotificationSnackbar);
+	// const setNotification = useNotificationStore((state) => state?.setNotificationData);
+	// const getNotii = async () => {
+	// 	const isSupportedBrowser = await isSupported();
+	// 	if (isSupportedBrowser) {
+	// 		onMessage(getMessaging(firebaseApp), (payload) => {
+	// 			setNotiOpen();
+	// 			const data = { title: payload.notification.title, message: payload.notification.body };
+	// 			setNotification({ data });
+	// 			var audio = document.getElementById("notiSound");
+	// 			audio.play();
+	// 		});
+	// 	}
+	// };
+	// getNotii();
 
 	const goToSearch = (q) => {
 		if (q.keyCode === 13) {
@@ -156,7 +156,7 @@ export const TopBar = () => {
 		>
 			<AcceptNotificationModal />
 			<CssBaseline />
-			<NotificationSnackbar title={notification?.title} message={notification?.message} />
+			{/* <NotificationSnackbar title={notification?.title} message={notification?.message} /> */}
 			<audio id="notiSound">
 				<source src="/sounds/notification.wav" type="audio/wav" />
 				Your browser does not support the audio element.
@@ -295,7 +295,7 @@ export const TopBar = () => {
 							onKeyDownCapture={(e) => goToSearch(e)}
 							placeholder={"Search"}
 						/>
-						{!subed ? (
+						{/* {!subed ? (
 							<Button
 								sx={{
 									border: "1px solid #F7EF8A",
@@ -316,7 +316,7 @@ export const TopBar = () => {
 							</Button>
 						) : (
 							<></>
-						)}
+						)} */}
 						<IconButton
 							onClick={() => router.push("/calendar")}
 							sx={{
@@ -326,7 +326,7 @@ export const TopBar = () => {
 						>
 							<Timeline />
 						</IconButton>
-						<IconButton
+						{/* <IconButton
 							onClick={() => router.push("/notifications")}
 							sx={{
 								display: ["none", "flex"],
@@ -334,7 +334,7 @@ export const TopBar = () => {
 							}}
 						>
 							<Notifications />
-						</IconButton>
+						</IconButton> */}
 
 						<IconButton
 							onClick={() => router.push("/calendar")}
@@ -345,7 +345,7 @@ export const TopBar = () => {
 						>
 							<Timeline />
 						</IconButton>
-						<IconButton
+						{/* <IconButton
 							onClick={() => router.push("/notifications")}
 							sx={{
 								display: ["flex", "none"],
@@ -353,7 +353,7 @@ export const TopBar = () => {
 							}}
 						>
 							<Notifications />
-						</IconButton>
+						</IconButton> */}
 
 						{engineer ? (
 							<Box position={"relative"} display={["none", "flex", "flex"]}>

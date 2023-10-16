@@ -160,7 +160,7 @@ export const AllResourceModel = ({ open, setOpen, data, subed }) => {
 								/>{" "}
 								Ink Color:- {data.inkColor}
 							</Typography>
-							{subed?.enrolled ? (
+							{/* {subed?.enrolled ? (
 								<Stack>
 									<Typography
 										fontSize={15}
@@ -187,19 +187,18 @@ export const AllResourceModel = ({ open, setOpen, data, subed }) => {
 										{getPercentageValue(20, data.totalPrice)}
 									</Typography>
 								</Stack>
-							) : (
-								<Typography
-									fontSize={15}
-									sx={{
-										display: "flex",
-										alignItems: "center",
-										gap: 1
-									}}
-								>
-									{" "}
-									<CurrencyRupee /> Price:- {data.totalPrice}
-								</Typography>
-							)}
+							) : (*/}
+							<Typography
+								fontSize={15}
+								sx={{
+									display: "flex",
+									alignItems: "center",
+									gap: 1
+								}}
+							>
+								{" "}
+								<CurrencyRupee /> Price:- {data.totalPrice}
+							</Typography>
 						</Box>
 						<ConfirmButton data={data} subed={subed?.enrolled} />
 					</>
