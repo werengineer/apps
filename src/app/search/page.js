@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 export default function SearchPage({ searchParams }) {
+	console.log(searchParams)
 	return (
 		<Box
 			display={"flex"}
