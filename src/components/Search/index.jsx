@@ -7,12 +7,12 @@ import React, { useEffect, useState } from "react";
 import { EngineerProfile } from "./EngineerProfile";
 
 export const Search = ({ search }) => {
-	console.log(search);
+	// console.log(search);
 	const [searchedData, setSearchedData] = useState([]);
 	useEffect(() => {
 		async function searching() {
 			try {
-				const data = await searchAll(search.q);
+				const data = await searchAll(search);
 				console.log(data);
 				setSearchedData(data);
 			} catch (error) {
@@ -20,7 +20,7 @@ export const Search = ({ search }) => {
 			}
 		}
 		searching();
-	}, [search.q]);
+	}, [search]);
 	return (
 		<Box
 			sx={{

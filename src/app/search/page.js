@@ -1,13 +1,15 @@
 "use client";
 import { Search } from "@components";
 import Box from "@mui/material/Box";
+import { useSearchParams } from "next/navigation";
 import PropTypes from "prop-types";
 import React from "react";
 
 export const dynamic = "force-dynamic";
 
-export default function SearchPage({ searchParams }) {
-	console.log(searchParams)
+export default function SearchPage() {
+	
+	const searchParams = useSearchParams();
 	return (
 		<Box
 			display={"flex"}
@@ -28,7 +30,7 @@ export default function SearchPage({ searchParams }) {
 					borderRight: ["none", "1px solid gray"]
 				}}
 			>
-				<Search search={searchParams} />
+				<Search search={searchParams.get("q")} />
 			</Box>
 		</Box>
 	);
