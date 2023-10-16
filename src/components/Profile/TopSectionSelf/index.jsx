@@ -118,6 +118,7 @@ export const TopSectionSelf = () => {
 						type="file"
 						style={{ display: "none" }}
 						onChange={changeProfilePicture}
+						accept=".png, .jpeg, .jpg"
 					/>
 				</Box>
 
