@@ -154,7 +154,7 @@ export const TopBar = () => {
 				backgroundColor: "#212121"
 			}}
 		>
-			<AcceptNotificationModal />
+			{/* <AcceptNotificationModal /> */}
 			<CssBaseline />
 			{/* <NotificationSnackbar title={notification?.title} message={notification?.message} /> */}
 			<audio id="notiSound">
@@ -317,7 +317,7 @@ export const TopBar = () => {
 						) : (
 							<></>
 						)} */}
-						<IconButton
+						{/* <IconButton
 							onClick={() => router.push("/calendar")}
 							sx={{
 								display: ["none", "flex"],
@@ -325,7 +325,7 @@ export const TopBar = () => {
 							}}
 						>
 							<Timeline />
-						</IconButton>
+						</IconButton> */}
 						{/* <IconButton
 							onClick={() => router.push("/notifications")}
 							sx={{
@@ -336,7 +336,7 @@ export const TopBar = () => {
 							<Notifications />
 						</IconButton> */}
 
-						<IconButton
+						{/* <IconButton
 							onClick={() => router.push("/calendar")}
 							sx={{
 								display: ["flex", "none"],
@@ -344,7 +344,7 @@ export const TopBar = () => {
 							}}
 						>
 							<Timeline />
-						</IconButton>
+						</IconButton> */}
 						{/* <IconButton
 							onClick={() => router.push("/notifications")}
 							sx={{
