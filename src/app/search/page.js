@@ -4,6 +4,8 @@ import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 import React from "react";
 
+export const dynamic = "force-dynamic";
+
 export default function SearchPage({ searchParams }) {
 	console.log(searchParams)
 	return (
