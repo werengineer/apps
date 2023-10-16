@@ -25,7 +25,7 @@ export default function SignupSuccess() {
 			const res = await completeSignup(data);
 			setCookie("engineer", JSON.stringify(res));
 			setLoading(false);
-			router.push("/dashboard");
+			router.push("/");
 		} catch (error) {
 			setLoading(false);
 			console.log(error);

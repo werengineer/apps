@@ -26,7 +26,7 @@ export const Question = ({ data }) => {
 	const [reactionDrawer, setReactionDrawer] = useState(null);
 
 	useEffect(() => {
-		const desc = document.getElementById(`description-${data._id}`);
+		const desc = document.getElementById(`description-${data?._id}`);
 		desc.innerHTML = data?.description;
 		var childElements = desc?.children;
 		for (var i = 0; i < childElements?.length; i++) {

@@ -10,12 +10,12 @@ import { getSubscription } from "@hooks/getSubscription";
 export const GhostWriting = ({ data, loading }) => {
 	const [open, setOpen] = useState(false);
 	const [resourceData, setResourceData] = useState([]);
-	const { subscription } = getSubscription();
-	const [subed, setSubed] = useState();
-	const getSub = async () => {
-		setSubed(await subscription());
-	};
-	getSub();
+	// const { subscription } = getSubscription();
+	// const [subed, setSubed] = useState();
+	// const getSub = async () => {
+	// 	setSubed(await subscription());
+	// };
+	// getSub();
 	return (
 		<Box display={"flex"} width={"100%"} flexDirection={"column"} gap={1} pt={1} pr={2} mb={2}>
 			<Typography fontSize={35}>Ghost Writing</Typography>
@@ -65,7 +65,7 @@ export const GhostWriting = ({ data, loading }) => {
 						);
 					})
 				)}
-				<AllResourceModel data={resourceData} open={open} setOpen={setOpen} subed={subed} />
+				<AllResourceModel data={resourceData} open={open} setOpen={setOpen} />
 			</Box>
 			<Box
 				sx={{

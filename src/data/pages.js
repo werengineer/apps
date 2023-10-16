@@ -1,9 +1,10 @@
 export const pages = [
 	"/",
+	"",
 	"/about",
 	"/signin",
 	"/signup",
-	"/dashboard",
+	"/",
 	"/clusters",
 	"/signin/success",
 	"/stories",

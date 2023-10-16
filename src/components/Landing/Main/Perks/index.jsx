@@ -114,7 +114,7 @@ export const Perks = () => {
 									color: "#121212"
 								}
 							}}
-							onClick={() => router.push("/dashboard")}
+							onClick={() => router.push("/")}
 						>
 							Explore More
 						</Button>
@@ -186,7 +186,7 @@ export const Perks = () => {
 									color: "#121212"
 								}
 							}}
-							onClick={() => router.push("/dashboard")}
+							onClick={() => router.push("/")}
 						>
 							Explore More
 						</Button>
@@ -252,7 +252,7 @@ export const Perks = () => {
 									color: "#121212"
 								}
 							}}
-							onClick={() => router.push("/dashboard")}
+							onClick={() => router.push("/")}
 						>
 							Explore More
 						</Button>
@@ -349,7 +349,7 @@ export const Perks = () => {
 										color: "#121212"
 									}
 								}}
-								onClick={() => router.push("/dashboard")}
+								onClick={() => router.push("/")}
 							>
 								Explore More
 							</Button>
@@ -439,7 +439,7 @@ export const Perks = () => {
 										color: "#121212"
 									}
 								}}
-								onClick={() => router.push("/dashboard")}
+								onClick={() => router.push("/")}
 							>
 								Explore More
 							</Button>
@@ -531,7 +531,7 @@ export const Perks = () => {
 										color: "#121212"
 									}
 								}}
-								onClick={() => router.push("/dashboard")}
+								onClick={() => router.push("/")}
 							>
 								Explore More
 							</Button>

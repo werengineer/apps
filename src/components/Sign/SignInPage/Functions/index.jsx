@@ -17,7 +17,7 @@ export const googleSignin = async (enqueueSnackbar, form, updateGoogle, router) 
 		// setCookie("engineer", JSON.stringify(res.data));
 		setEngineer(res.data);
 		enqueueSnackbar("You have been logged in successfully.", { variant: "success" });
-		router.push("/dashboard");
+		router.push("/");
 	} catch (error) {
 		console.log(error);
 		enqueueSnackbar(
@@ -38,7 +38,7 @@ export const signinNormal = async (enqueueSnackbar, form, setLoading, router) =>
 		// setCookie("engineer", JSON.stringify(res.data));
 		setEngineer(res.data);
 		enqueueSnackbar("You have been logged in successfully.", { variant: "success" });
-		router.push("/dashboard");
+		router.push("/");
 	} catch (err) {
 		console.log(err);
 		enqueueSnackbar(err?.response?.data?.message || "Unknown error occured.", {

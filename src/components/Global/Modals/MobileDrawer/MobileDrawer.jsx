@@ -91,7 +91,7 @@ const MobileDrawer = () => {
 							}}
 							onClick={() => {
 								setOpen(false);
-								router.push("/dashboard");
+								router.push("/");
 							}}
 						>
 							<Dashboard />

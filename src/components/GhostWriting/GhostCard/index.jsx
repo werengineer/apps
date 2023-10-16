@@ -16,12 +16,12 @@ import { useSnackbar } from "notistack";
 import { useRouter } from "next/navigation";
 
 export const GhostCard = ({ data, i, setOpen, setResourceData }) => {
-	const { subscription } = getSubscription();
-	const [subed, setSubed] = useState();
-	const getSub = async () => {
-		setSubed(await subscription());
-	};
-	getSub();
+	// const { subscription } = getSubscription();
+	// const [subed, setSubed] = useState();
+	// const getSub = async () => {
+	// 	setSubed(await subscription());
+	// };
+	// getSub();
 	const { enqueueSnackbar } = useSnackbar();
 	const stripee = Stripe(STRIPE_SECRET_KEY);
 	const engineer = getEngineer();
@@ -166,7 +166,7 @@ export const GhostCard = ({ data, i, setOpen, setResourceData }) => {
 					/>{" "}
 					Ink Color:- {data.inkColor}
 				</Typography>
-				{subed?.enrolled ? (
+				{/* {subed?.enrolled ? (
 					<Stack>
 						<Typography
 							fontSize={15}
@@ -192,7 +192,7 @@ export const GhostCard = ({ data, i, setOpen, setResourceData }) => {
 							<CurrencyRupee /> Premium Price:- {getPercentageValue(20, data.totalPrice)}
 						</Typography>
 					</Stack>
-				) : (
+				) : ( */}
 					<Typography
 						fontSize={15}
 						sx={{
@@ -204,7 +204,7 @@ export const GhostCard = ({ data, i, setOpen, setResourceData }) => {
 						{" "}
 						<CurrencyRupee /> Price:- {data.totalPrice}
 					</Typography>
-				)}
+				{/* )} */}
 			</Box>
 			<Box display={"flex"} justifyContent={"flex-start"}>
 				<Button

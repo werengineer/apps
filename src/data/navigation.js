@@ -12,7 +12,7 @@ export const NAVIGATIONS = [
 	{
 		icon: Dashboard,
 		title: "Dashboard",
-		link: "/dashboard"
+		link: "/"
 	},
 	{
 		icon: Forum,

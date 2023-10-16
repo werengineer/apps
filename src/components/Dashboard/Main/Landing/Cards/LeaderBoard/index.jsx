@@ -117,7 +117,7 @@ export const LeaderBoardCard = () => {
 					}}
 					onClick={() => {
 						setDashobard("Landing");
-						router.push("/dashboard/leaderboard");
+						router.push("//leaderboard");
 					}}
 				>
 					Leaderboard

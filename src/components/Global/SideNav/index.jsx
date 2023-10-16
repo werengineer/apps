@@ -14,14 +14,14 @@ export const SideNav = () => {
 	const pathName = usePathname();
 	const router = useRouter();
 	const coins = useCoinsStore((state) => state.coins);
-	const { subscription } = getSubscription();
-	const [subed, setSubed] = useState();
+	// // const { subscription } = getSubscription();
+	// const [subed, setSubed] = useState();
 
 	// const coinValue = JSON.parse(sessionStorage.getItem("userKey"));
-	const getSub = async () => {
-		setSubed(await subscription());
-	};
-	getSub();
+	// const getSub = async () => {
+	// 	setSubed(await subscription());
+	// };
+	// getSub();
 
 	return (
 		<Box
@@ -56,7 +56,6 @@ export const SideNav = () => {
 
 						<Typography>{nFormatter(coins, 0)} WAE Coins</Typography>
 						{/* <Typography>{coinValue?.coins} WAE Coins</Typography> */}
-
 					</Box>
 					<Box
 						display={"flex"}
@@ -99,7 +98,7 @@ export const SideNav = () => {
 							padding: 3
 						}}
 					>
-						{!subed ? (
+						{/* {!subed ? (
 							<>
 								<Typography textAlign="center">
 									Subscribe to Early Bird Subscription! and start you journey of becoming a
@@ -124,33 +123,33 @@ export const SideNav = () => {
 									Try Premium
 								</Button>
 							</>
-						) : (
-							<>
-								<Typography textAlign="center">More Things are coming up!</Typography>
-								<Typography textAlign="center">Stay tuned!</Typography>
-								<Typography textAlign="center">
-									Enjoy our latest feature with exclusive discount only for you!
-								</Typography>
-								<Button
-									sx={{
-										border: "1px solid #F7EF8A",
-										borderRadius: "30px",
-										paddingX: "20px",
-										display: ["none", "block"],
-										color: "#272727",
-										":hover": {
-											background:
-												"linear-gradient(181deg, #F7EF8A 0%, #EDC967 37.50%, #D2AC47 78.65%, #AE8625 100%)",
-											boxShadow: "0px 4px 66.95999908447266px 0px #867004",
-											color: "#272727"
-										}
-									}}
-									onClick={() => router.push("/ghostwriting")}
-								>
-									GhostWriting
-								</Button>
-							</>
-						)}
+						) : ( */}
+						<>
+							<Typography textAlign="center">More Things are coming up!</Typography>
+							<Typography textAlign="center">Stay tuned!</Typography>
+							<Typography textAlign="center">
+								Enjoy our latest feature with exclusive discount only for you!
+							</Typography>
+							<Button
+								sx={{
+									border: "1px solid #F7EF8A",
+									borderRadius: "30px",
+									paddingX: "20px",
+									display: ["none", "block"],
+									color: "#272727",
+									":hover": {
+										background:
+											"linear-gradient(181deg, #F7EF8A 0%, #EDC967 37.50%, #D2AC47 78.65%, #AE8625 100%)",
+										boxShadow: "0px 4px 66.95999908447266px 0px #867004",
+										color: "#272727"
+									}
+								}}
+								onClick={() => router.push("/ghostwriting")}
+							>
+								GhostWriting
+							</Button>
+						</>
+						{/* )} */}
 					</Box>
 					<Box
 						width={"90%"}
@@ -173,7 +172,6 @@ export const SideNav = () => {
 						>
 							{nFormatter(coins, 0)} WAE Coins
 							{/* <Typography>{coinValue?.coins} WAE Coins</Typography> */}
-
 						</Typography>
 					</Box>
 				</>
@@ -403,18 +401,22 @@ export const SideNav = () => {
 				</Menu> */}
 			</Box>
 			<Box>
-				<Typography sx={{
+				<Typography
+					sx={{
 						color: "grey",
 						fontSize: 13
-					}} >
+					}}
+				>
 					© 2023 Sumus Engineer Pvt Ltd. All rights reserved.
 				</Typography>
-				<Typography sx={{
+				<Typography
+					sx={{
 						color: "grey",
 						fontSize: 13,
 						textAlign: "center",
 						top: 10
-					}} >
+					}}
+				>
 					Version V0.2
 				</Typography>
 			</Box>

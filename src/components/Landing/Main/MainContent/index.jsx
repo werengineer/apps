@@ -70,7 +70,7 @@ export const MainContent = () => {
 										color: "white"
 									}
 								}}
-								onClick={() => router.push("/dashboard")}
+								onClick={() => router.push("/")}
 							>
 								Go To Dashboard
 							</Button>

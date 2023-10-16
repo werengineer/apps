@@ -47,7 +47,6 @@ export const AllProviders = ({ children }) => {
 		return null;
 	}
 	const topbarCondition =
-		path === "/" ||
 		path === "/signin" ||
 		path === "/signup" ||
 		path === "/calendar" ||

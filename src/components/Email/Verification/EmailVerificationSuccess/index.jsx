@@ -39,7 +39,7 @@ export const EmailVerificationSuccess = () => {
 					color: "#05D9D7",
 					px: "15px"
 				}}
-				onClick={() => router.replace("/dashboard")}
+				onClick={() => router.replace("/")}
 			>
 				Go Home
 			</Button>

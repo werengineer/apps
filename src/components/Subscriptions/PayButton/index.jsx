@@ -17,12 +17,12 @@ export const PayButton = ({ main }) => {
 	const { enqueueSnackbar } = useSnackbar();
 	const stripee = stripe(STRIPE_SECRET_KEY);
 	const engineer = getEngineer();
-	const { subscription } = getSubscription();
+	// // const { subscription } = getSubscription();
 	const [subed, setSubed] = useState();
-	const getSub = async () => {
-		setSubed(await subscription());
-	};
-	getSub();
+	// const getSub = async () => {
+	// 	setSubed(await subscription());
+	// };
+	// getSub();
 	const router = useRouter();
 	const getSessionAndSetOrder = async (sessionId) => {
 		const session = await stripee.checkout.sessions.retrieve(sessionId);
@@ -53,7 +53,7 @@ export const PayButton = ({ main }) => {
 						variant: "success"
 					});
 				}, 5000);
-				router.push("/dashboard");
+				router.push("/");
 			}
 		} catch (error) {
 			console.log(error);
@@ -67,10 +67,10 @@ export const PayButton = ({ main }) => {
 		const query = new URLSearchParams(window.location.search);
 		if (query.get("success") && query.get("session_id")) {
 			const sessionId = query.get("session_id");
-			if (!subed) {
-				getSessionAndSetOrder(sessionId);
-				console.log("Order placed! You will receive an email confirmation.");
-			}
+			// if (!subed) {
+			getSessionAndSetOrder(sessionId);
+			console.log("Order placed! You will receive an email confirmation.");
+			// }
 		}
 
 		if (query.get("canceled")) {
@@ -83,7 +83,7 @@ export const PayButton = ({ main }) => {
 	return (
 		<form action="/api/subscription" method="POST">
 			<Button
-				disabled={!main || !engineer || subed}
+				disabled={!main || !engineer}
 				sx={{
 					border: "1px solid #F7EF8A",
 					borderRadius: "30px",
@@ -100,7 +100,7 @@ export const PayButton = ({ main }) => {
 				}}
 				type="submit"
 			>
-				{main ? (subed ? "Subscribed ✔" : "Subscribe ✔") : "Coming Soon 👀"}
+				{main ? "Subscribed ✔" : "Coming Soon 👀"}
 			</Button>
 		</form>
 	);

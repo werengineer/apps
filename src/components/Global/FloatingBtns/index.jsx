@@ -37,7 +37,7 @@ export const FloatingBtns = () => {
 			<Fab
 				sx={{
 					display: [
-						path === "/dashboard" || path === "/questions" || path === "/stories"
+						path === "/" || path === "/questions" || path === "/stories"
 							? "flex"
 							: "none",
 						"none",
