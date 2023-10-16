@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
 					content="Join us on an emotional journey of transformation as We Are Engineer shapes the future of engineering education. Experience our commitment to empowering individuals, creating opportunities, and fostering hope. Together, let's revolutionize the landscape of engineering education."
 				/>
 				{/* this will be changed to index, follow in beta */}
-				<meta name=" robots" content="index, follow"></meta>
+				<meta name="robots" content="index, follow"></meta>
 				<link rel="canonical" href={myLink} />
 				<meta property="og:type" content="website" />
 				<meta property="og:title" content="We Are Engineer" />
