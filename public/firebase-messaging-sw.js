@@ -42,7 +42,6 @@ messaging.onBackgroundMessage(function (payload) {
 
 self.addEventListener("push", (event) => {
 	let data = JSON.parse(event.data.text());
-	console.log(event.data.text());
 	const notificationOptions = {
 		body: data.notification.body,
 		icon: "/android-chrome-192x192.png",

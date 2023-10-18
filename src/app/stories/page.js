@@ -20,7 +20,6 @@ export default function StoriesPage() {
 	const stories = useStoryStore((state) => state?.stories);
 
 	const fetchStories = async () => {
-		console.log(stories);
 		var data;
 
 		try {
@@ -29,10 +28,8 @@ export default function StoriesPage() {
 			if (storiesData.data.length < 10) {
 				setCompleted(true);
 			}
-			console.log(storiesData);
 			data = storiesData.data;
 			setStories(data);
-			console.log(stories);
 			setSkip(skip + 10);
 		} catch (error) {
 			console.log("List getServerSideProps 45", error);

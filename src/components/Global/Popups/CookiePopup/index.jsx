@@ -32,7 +32,8 @@ export const CookiePopup = () => {
 	}, []);
 
 	const setWAECookie = () => {
-		setCookie("wae-cookie", true);
+		// setCookie("wae-cookie", true);
+		sessionStorage.setItem("wae-cookie", true);
 		setOpen(false);
 	};
 

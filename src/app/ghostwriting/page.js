@@ -20,7 +20,6 @@ export default function GhostWritingPage() {
 				);
 				setData(response.data);
 				setLoading(false);
-				console.log(response.data);
 			} catch (error) {
 				console.log(error);
 				setLoading(false);

@@ -8,7 +8,6 @@ export async function POST(req) {
 	const data = await req.formData();
 	const stripee = stripe(STRIPE_SECRET_KEY);
 	// form.parse(req, async (err, fields, files) => {
-	// 	console.log(fields, data);
 	// });
 	if (req.method === "POST") {
 		try {

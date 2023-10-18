@@ -1,12 +1,12 @@
 import { API_URL } from "@constants";
 import { getEngineer } from "@cookies";
 import axios from "axios";
+import { json } from "formidable";
 
 const eng = getEngineer();
 
 export const signupEngineer = async (data, file) => {
 	try {
-		console.log(data);
 		const signup = await axios.post(`${API_URL}/engineer/signup`, {
 			...data,
 			uploadedFile: file
@@ -89,8 +89,7 @@ export const getGeneralEngineer = async ({ id, username, email }) => {
 		} else {
 			await axios.get(`${API_URL}/engineer/get`);
 		}
-		sessionStorage.setItem("userKey", JSON.stringify(engineer?.data));
-
+		sessionStorage.setItem("engineer", JSON.stringify(engineer?.data));
 		return engineer?.data;
 	} catch (error) {
 		console.log(error);

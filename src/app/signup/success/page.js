@@ -23,7 +23,8 @@ export default function SignupSuccess() {
 		setLoading(true);
 		try {
 			const res = await completeSignup(data);
-			setCookie("engineer", JSON.stringify(res));
+			// setCookie("engineer", JSON.stringify(res));
+			sessionStorage.setItem("engineer", JSON.stringify(res));
 			setLoading(false);
 			router.push("/");
 		} catch (error) {

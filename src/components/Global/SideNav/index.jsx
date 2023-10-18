@@ -1,27 +1,38 @@
 "use client";
 import { ArrowDropDown } from "@mui/icons-material";
 import { Box, Button, Link, Menu, MenuItem, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useCoinsStore } from "@store";
 import { getSubscription } from "@hooks/getSubscription";
 import { nFormatter } from "@hooks/nFormatter";
+import axios from "axios";
+import { API_URL } from "@constants";
+import { getGeneralEngineer } from "@api";
+import { getEngineer } from "@cookies";
 
 export const SideNav = () => {
 	const [option, setOption] = useState();
 	const pathName = usePathname();
 	const router = useRouter();
+	const setCoins = useCoinsStore((state) => state.setCoins);
 	const coins = useCoinsStore((state) => state.coins);
+
+	// const [engineer, setEngineer] = useState();
+
 	// // const { subscription } = getSubscription();
 	// const [subed, setSubed] = useState();
 
-	// const coinValue = JSON.parse(sessionStorage.getItem("userKey"));
+	const engineer = sessionStorage.getItem("engineer") !== null ? JSON.parse(sessionStorage.getItem("engineer")) : false;
 	// const getSub = async () => {
 	// 	setSubed(await subscription());
 	// };
 	// getSub();
+	// useEffect(() => {
+	// 	setEngineer(getEngineer);
+	// }, []);
 
 	return (
 		<Box
@@ -54,8 +65,8 @@ export const SideNav = () => {
 					>
 						<Image src={"/icons/Tools.svg"} alt={"axe img"} width={80} height={80} />
 
-						<Typography>{nFormatter(coins, 0)} WAE Coins</Typography>
-						{/* <Typography>{coinValue?.coins} WAE Coins</Typography> */}
+						{/* <Typography>{nFormatter(coins, 0)} WAE Coins</Typography> */}
+						<Typography>{engineer?.coins} WAE Coins</Typography>
 					</Box>
 					<Box
 						display={"flex"}
@@ -170,8 +181,8 @@ export const SideNav = () => {
 								fontSize: "20px"
 							}}
 						>
-							{nFormatter(coins, 0)} WAE Coins
-							{/* <Typography>{coinValue?.coins} WAE Coins</Typography> */}
+							{/* {nFormatter(coins, 0)} WAE Coins */}
+							<Typography>{engineer?.coins} WAE Coins</Typography>
 						</Typography>
 					</Box>
 				</>

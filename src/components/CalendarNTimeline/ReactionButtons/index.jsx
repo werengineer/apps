@@ -28,7 +28,6 @@ export const ReactionButtons = ({
 			try {
 				const res = await ReactionsCounts(date, monthId);
 				setReactions(res);
-				console.log(reactions);
 			} catch (error) {
 				console.log(error);
 			}

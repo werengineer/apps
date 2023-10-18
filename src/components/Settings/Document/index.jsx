@@ -9,7 +9,7 @@ import DocumentModal from "./DocumentModal";
 
 export const Document = ({ form, engineer }) => {
 	const [open, setOpen] = useState(false);
-	console.log(engineer);
+	
 	return (
 		<Box
 			// marginX={['3%', '10px']}

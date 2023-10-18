@@ -68,14 +68,18 @@ const SettingState = (props) => {
 						}
 					}
 				);
-				setCookie("engineer", JSON.stringify(updateUser.data));
+				// setCookie("engineer", JSON.stringify(updateUser.data));
+				sessionStorage.setItem("engineer", JSON.stringify(updateUser?.data));
+
 			} else {
 				const updateUser = await axios.post(`${API_URL}/engineer/update/profile`, data, {
 					headers: {
 						EngineerID: engineer?._id
 					}
 				});
-				setCookie("engineer", JSON.stringify(updateUser.data));
+				// setCookie("engineer", JSON.stringify(updateUser.data));
+				sessionStorage.setItem("engineer", JSON.stringify(updateUser?.data));
+
 			}
 			enqueueSnackbar("Profile Updated Successfully", {
 				variant: "success"
@@ -161,7 +165,9 @@ const SettingState = (props) => {
 					}
 				}
 			);
-			setCookie("engineer", res.data.updatedEngineer);
+			// setCookie("engineer", res.data.updatedEngineer);
+			sessionStorage.setItem("engineer", JSON.stringify(res?.data?.updatedEngineer));
+
 			return;
 		} catch (error) {
 			console.log(error);

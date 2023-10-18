@@ -72,7 +72,6 @@ export const TopBar = () => {
 	const { handleSubmit, loading, dataChanged } = useContext(SettingsContext);
 	const theme = useTheme();
 	const [open, setOpen] = useRecoilState(sidebarOpenState);
-	console.log(open, sidebarOpenState, 123);
 	const [openUserModal, setOpenUserModal] = useRecoilState(userModal);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [mobileDrawer, setMobileDrawer] = useRecoilState(mobileDrawerState);

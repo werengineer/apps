@@ -15,7 +15,7 @@ export const SignInPage = () => {
 
 	
 	useEffect(() => {
-		const token = sessionStorage.getItem('userKey');
+		const token = sessionStorage.getItem('engineer');
 		
 		if (token !== undefined) {
 			try {

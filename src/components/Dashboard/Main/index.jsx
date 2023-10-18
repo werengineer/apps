@@ -16,7 +16,7 @@ export const DashboardMain = () => {
 
 	useEffect(() => {
 		const fetchEngineer = async () => {
-			if(sessionStorage.getItem('userKey')){
+			if(sessionStorage.getItem('engineer')){
 			const res = await axios.get(`${API_URL}/engineer/get?id=${engineer._id}`);
 			setCoins(res.data?.coins);
 			}

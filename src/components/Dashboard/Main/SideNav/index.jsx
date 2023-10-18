@@ -8,7 +8,20 @@ import Image from "next/image";
 const Index = () => {
 	const [option, setOption] = useState();
 	const router = useRouter();
-	console.log(router);
+
+	// const setCoins = useCoinsStore((state) => state.setCoins);
+
+	// useEffect(() => {
+	// 	console.log("wdbchjdsbcsdcksd c", 123);
+	// 	const fetchEngineer = async () => {
+	// 		if(sessionStorage.getItem('engineer')){
+	// 		const res = await axios.get(`${API_URL}/engineer/get?id=${engineer._id}`);
+	// 		setCoins(res.data?.coins);
+	// 		}
+	// 	};
+	// 	fetchEngineer();
+	// }, []);
+
 	return (
 		<Box
 			display={["none", "flex"]}

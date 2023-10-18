@@ -23,12 +23,14 @@ export function FeedbackPopup() {
 	}, []);
 
 	const setFormCookie = () => {
-		setCookie("wae-form", true);
+		// setCookie("wae-form", true);
+		sessionStorage.setItem("wae-form", "true");
 		window.open(FEEDBACK_FORM, "__blank");
 	};
 
 	const handleClose = () => {
-		setCookie("wae-form", "Dont want to");
+		sessionStorage.setItem("wae-form", "Dont want to")
+		// setCookie("wae-form", "Dont want to");
 		setOpen(false);
 		return;
 	};

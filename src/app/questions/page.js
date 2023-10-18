@@ -29,7 +29,6 @@ export default function QuestionPage() {
 			if (questionsData.data.length < 10) {
 				setCompleted(true);
 			}
-			console.log(questions)
 			setSkip(skip + 10);
 			setQuestions(questionsData.data);
 		} catch (error) {

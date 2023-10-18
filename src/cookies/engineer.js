@@ -1,4 +1,4 @@
-import { getCookie, setCookie,deleteCookie } from "cookies-next";
+import { getCookie, setCookie, deleteCookie } from "cookies-next";
 
 export const getUser = () => {
 	const providerData =
@@ -7,13 +7,15 @@ export const getUser = () => {
 };
 
 export const getEngineer = () => {
-	const engineerData = getCookie("engineer") !== undefined ? JSON.parse(getCookie("engineer")) : false;
+	// const engineerData = getCookie("engineer") !== undefined ? JSON.parse(getCookie("engineer")) : false;
+	const engineerData = sessionStorage.getItem("engineer") !== null ? JSON.parse(sessionStorage.getItem("engineer")) : false;
 	return engineerData;
 };
 
 export const setEngineer = (engineerData) => {
 	const data = JSON.stringify(engineerData);
-	setCookie("engineer", data);
+	sessionStorage.setItem("engineer", data);
+	// setCookie("engineer", data);
 	return;
 };
 

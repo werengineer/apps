@@ -14,7 +14,8 @@ export const verifyMobile = async (id) => {
 				}
 			}
 		);
-		setCookie("engineer", JSON.stringify(res.data.updatedEngineer));
+		// setCookie("engineer", JSON.stringify(res.data.updatedEngineer));
+		sessionStorage.setItem("engineer", JSON.stringify(res.data.updatedEngineer));
 		return;
 	} catch (error) {
 		console.log(error);

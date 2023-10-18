@@ -102,7 +102,9 @@ export const EmailState = ({ children }) => {
 						}
 					)
 					.then((data) => {
-						setCookie("engineer", JSON.stringify(data?.data?.updatedEngineer));
+						// setCookie("engineer", JSON.stringify(data?.data?.updatedEngineer));
+						sessionStorage.setItem("engineer", JSON.stringify(data?.data?.updatedEngineer));
+
 						completeAchievement({
 							id: achievementID.verifyEmail,
 							enqueueSnackbar: enqueueSnackbar,

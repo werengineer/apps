@@ -37,7 +37,7 @@ export const AddAnswer = ({ questionId, setAnswers, answers }) => {
 		const fetchEngineer = async () => {
 			const engineer = await getEngineer();
 			setEngineer(engineer);
-			console.log(engineer);
+			
 		};
 
 		fetchEngineer();

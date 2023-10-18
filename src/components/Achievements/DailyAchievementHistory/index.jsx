@@ -91,7 +91,6 @@ export const DailyAchievementHistory = () => {
 	// 	let rewards = [];
 	// 	map.map((obj) => {
 	// 		let currentDaysRewards = 0;
-	// 		console.log(obj);
 	// 		const keys = Object.keys(obj);
 
 	// 		keys.map((key) => {
