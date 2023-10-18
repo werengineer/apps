@@ -6,12 +6,6 @@ import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useCoinsStore } from "@store";
-import { getSubscription } from "@hooks/getSubscription";
-import { nFormatter } from "@hooks/nFormatter";
-import axios from "axios";
-import { API_URL } from "@constants";
-import { getGeneralEngineer } from "@api";
-import { getEngineer } from "@cookies";
 
 export const SideNav = () => {
 	const [option, setOption] = useState();
