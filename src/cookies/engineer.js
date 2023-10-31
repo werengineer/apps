@@ -8,7 +8,7 @@ export const getUser = () => {
 
 export const getEngineer = () => {
 	const engineerData = getCookie("engineer") !== undefined ? JSON.parse(getCookie("engineer")) : false;
-	return engineerData;
+	return engineerData
 };
 
 export const setEngineer = (engineerData) => {

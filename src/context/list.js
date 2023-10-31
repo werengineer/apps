@@ -26,6 +26,7 @@ export const ListState = ({ children }) => {
 				const res = await fetchLists();
 				setLists(res);
 				console.log(lists);
+				console.log("Lists fetched");
 			} catch (error) {
 				//Handle Error Here
 			} finally {

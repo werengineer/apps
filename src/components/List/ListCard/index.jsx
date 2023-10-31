@@ -8,7 +8,7 @@ import ListMenu from "./ListMenu";
 
 export const ListCard = ({ data }) => {
 	const [anchorEl, setAnchorEl] = useState();
-
+	
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
@@ -17,6 +17,7 @@ export const ListCard = ({ data }) => {
 	};
 
 	console.log(data);
+	// window.location.reload();
 	return (
 		<Box
 			border={"1px solid #1D5352"}

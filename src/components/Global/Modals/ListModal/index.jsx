@@ -176,10 +176,12 @@ export const ListModal = ({ questionId, question, storyId }) => {
 				}
 			});
 			if (error) {
+				console.log("Story error")
 				enqueueSnackbar(error?.response?.data?.message || "Unknown error occured", {
 					variant: "error"
 				});
 			} else {
+				console.log("Story success")
 				enqueueSnackbar("Story successfully added to list", { variant: "success" });
 			}
 			setOpen(false);

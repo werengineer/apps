@@ -18,6 +18,8 @@ export const MainList = () => {
 	const { lists, loading } = listContext;
 	const engineer = getEngineer();
 
+	console.log("Test", lists);
+
 	return (
 		<Box
 			sx={{

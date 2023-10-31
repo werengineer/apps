@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import { firebaseAuth } from "@fb";
 import { sendEmailVerification } from "firebase/auth";
 import { AchievementState } from "@context/achievements";
+import { fetchAllUser } from "@api/leaderboard";
 
 export const MainDashboard = () => {
 	const [engineer, setEngineer] = useState();
@@ -36,6 +37,7 @@ export const MainDashboard = () => {
 			try {
 				const res = await getLists();
 				console.log(res);
+				console.log("hello")
 				setList(res);
 			} catch (error) {
 				setList([]);

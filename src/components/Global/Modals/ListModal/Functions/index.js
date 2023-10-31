@@ -65,6 +65,7 @@ export const SaddToList = async (storyId, listId, engineerId) => {
 
 export const createList = async (form) => {
 	try {
+		console.log("created")
 		const res = await axios.post(`${API_URL}/list/create`, form.flatValues, {
 			headers: {
 				EngineerID: engineer._id
@@ -79,12 +80,13 @@ export const createList = async (form) => {
 
 export const fetchAllListByEngineer = async (enqueueSnackbar) => {
 	try {
+		console.log("fetching")
 		const res = await axios.get(`${API_URL}/list/get`, {
 			headers: {
 				EngineerID: engineer?._id
 			}
 		});
-		console.log(res);
+		console.log(res.data,"Fetch");
 		return res.data;
 	} catch (error) {
 		enqueueSnackbar(error.message || "Server error", { variant: "error" });

@@ -9,7 +9,7 @@ import { createList, fetchAllListByEngineer } from "../../../Functions";
 import { ListModalContext } from "@context/listModal";
 import { completeAchievement } from "@api/achievement";
 import { achievementID } from "@lib/achievementID";
-import axios from "axios";
+import axios, { all } from "axios";
 import { API_URL } from "@constants";
 import { getEngineer } from "@cookies";
 
@@ -25,21 +25,32 @@ export const CreateList = ({ fetchLists, setOpen, enqueueSnackbar }) => {
 			console.log("Here");
 			const res = await createList(form);
 			enqueueSnackbar("Successfully created list", { variant: "success" });
+			// console.log(res,"List Created")	
 			const allLists = await fetchAllListByEngineer(enqueueSnackbar);
+			console.log(allLists)
+			// console.log("All List Fetched")
 			if (allLists?.length === 1) {
+				// console.log("First")
 				completeAchievement({
 					id: achievementID.createList,
 					enqueueSnackbar: enqueueSnackbar
-				}).catch((error) =>
-					enqueueSnackbar(error.message || "Server error", { variant: "error" })
+				}).then(
+					() => console.log("Achievement Completed")
+				).catch((error) =>
+					enqueueSnackbar( "Server error", { variant: "error" })
 				);
 			}
 			form.reset();
-			setLists([...lists, res.data]);
+			console.log(allLists,"res.data")
+			
+			setLists(lists.length===0?[res]:[...lists, res]);
+			// console.log(lists,"lists")
 		} catch (error) {
+			// console.log(error,"error")
 			enqueueSnackbar("Internal Server Error Occur!", { variant: "error" });
 		} finally {
 			await fetchLists();
+			window.location.reload();
 			setLoading(false);
 			setOpen(false);
 			setNewList(false);

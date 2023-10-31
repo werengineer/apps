@@ -17,6 +17,7 @@ export const pages = [
 	"/profile/",
 	"/settings",
 	"/ghostwriting",
+	"/leaderboard",
 	"settings",
 	"profile",
 	"list",
@@ -29,5 +30,6 @@ export const pages = [
 	"notifications",
 	"search",
 	"ghostwriting",
-	"collage"
+	"collage",
+	"leaderboard"
 ];

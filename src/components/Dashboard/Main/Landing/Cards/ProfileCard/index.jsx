@@ -17,13 +17,15 @@ export const ProfileCard = () => {
 	const router = useRouter();
 	const [profileComplete, setProfileComplete] = useState(0);
 	const coins = useCoinsStore((state) => state.coins);
-
+	console.log("coins", coins);
+	console.log("engineer", engineer.xp)
 	const completion = [
 		"Great, you just started your journey",
 		"You just took your first step",
 		"Your are almost there",
 		"You are now one of us!"
 	];
+	
 
 	return (
 		<Box

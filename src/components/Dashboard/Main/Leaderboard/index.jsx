@@ -1,12 +1,21 @@
 "use client";
 import { Box, ButtonGroup, Button } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AllOver } from "./AllOver";
 import { LastWeek } from "./LastWeek";
 import { ThisMonth } from "./ThisMonth";
+import { fetchAllUser } from "@api/leaderboard";
 
 export const Leaderboard = () => {
 	const [leaderBoardTab, setLeaderBoardTab] = useState("This Month");
+	useEffect(() => {
+		const engineers = fetchAllUser();
+		console.log("engineers",engineers);
+	}, [])
+	
+
+	
+	console.log("leaderBoardTab");
 
 	const handleClick = (e) => {
 		setLeaderBoardTab(e.target.title);
