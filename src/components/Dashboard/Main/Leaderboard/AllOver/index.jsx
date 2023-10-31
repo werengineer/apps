@@ -11,10 +11,35 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import React from "react";
+import { useState, useEffect } from "react";
+import { fetchAllUser } from "@api/leaderboard";
+import { getEngineer } from "@cookies";
+
+
 
 export const AllOver = () => {
+	const [users, setUsers] = useState([]);
+	const engineer = getEngineer();
+
+	useEffect(() => {
+		const fetchData = async () => {
+		  try {
+			const fetchedUsers = await fetchAllUser();
+			// Sort users based on rank in ascending order
+			const sortedUsers = fetchedUsers.sort((a, b) => a.rank - b.rank);
+			setUsers(sortedUsers);
+		  } catch (error) {
+			console.error('Error fetching users:', error);
+		  }
+		};
+	
+		fetchData();
+	  }, []);
+
+	  console.log("users", users);
+
 	return (
-		<TableContainer sx={{}}>
+		<TableContainer component={Box} sx={{ overflowY: 'auto', maxHeight: '75vh' }}>
 			<Table>
 				<TableHead>
 					<TableRow>
@@ -59,12 +84,14 @@ export const AllOver = () => {
 				</TableHead>
 
 				<TableBody sx={{}}>
+				{users.map((user, index) => (
 					<TableRow
 						sx={{
-							backgroundColor: "#1D5352",
+							backgroundColor: engineer._id === user._id? "#1D5352":"none",
 							border: "0",
 							height: "10px"
 						}}
+						key={user._id}
 					>
 						<TableCell
 							align="left"
@@ -72,7 +99,7 @@ export const AllOver = () => {
 								border: "0"
 							}}
 						>
-							23475
+							{user.rank}
 						</TableCell>
 
 						<TableCell
@@ -89,8 +116,8 @@ export const AllOver = () => {
 								//   ml: [0, 35]
 							}}
 						>
-							<Avatar>LK</Avatar>
-							<Typography>Lokesh Kabra</Typography>
+							<Avatar>{user.avatar}</Avatar>
+							<Typography>{user.name}</Typography>
 						</TableCell>
 						<TableCell
 							align="right"
@@ -98,129 +125,11 @@ export const AllOver = () => {
 								border: "0"
 							}}
 						>
-							+450
+							{user.xp}
 						</TableCell>
 					</TableRow>
-
-					<TableRow
-						sx={{
-							border: "0"
-						}}
-					>
-						<TableCell
-							align="left"
-							sx={{
-								border: "0"
-							}}
-						>
-							1
-						</TableCell>
-
-						<TableCell
-							align="center"
-							sx={{
-								display: "flex",
-								justifyContent: "flex-start",
-								alignItems: "center",
-								gap: "1vw",
-								border: "0",
-								width: ["auto", "20vw"]
-								//   mx: 'auto',
-								//   ml: [0, 35]
-							}}
-						>
-							<Avatar>AB</Avatar>
-							<Typography>Alec Benjamin</Typography>
-						</TableCell>
-						<TableCell
-							align="right"
-							sx={{
-								border: "0"
-							}}
-						>
-							+450
-						</TableCell>
-					</TableRow>
-
-					<TableRow
-						sx={{
-							border: "0"
-						}}
-					>
-						<TableCell
-							align="left"
-							sx={{
-								border: "0"
-							}}
-						>
-							2
-						</TableCell>
-
-						<TableCell
-							align="center"
-							sx={{
-								display: "flex",
-								justifyContent: "flex-start",
-								alignItems: "center",
-								width: ["auto", "20vw"],
-								border: "0",
-								gap: "1vw"
-								//   mx: 'auto',
-								//   ml: [0, 35]
-							}}
-						>
-							<Avatar>TC</Avatar>
-							<Typography>Tejas Chaudhari</Typography>
-						</TableCell>
-						<TableCell
-							align="right"
-							sx={{
-								border: "0"
-							}}
-						>
-							+450
-						</TableCell>
-					</TableRow>
-
-					<TableRow
-						sx={{
-							border: "0"
-						}}
-					>
-						<TableCell
-							align="left"
-							sx={{
-								border: "0"
-							}}
-						>
-							3
-						</TableCell>
-
-						<TableCell
-							align="center"
-							sx={{
-								display: "flex",
-								justifyContent: "flex-start",
-								alignItems: "center",
-								gap: "1vw",
-								border: "0",
-								width: ["auto", "20vw"]
-								//   mx: 'auto',
-								//   ml: [0, 35]
-							}}
-						>
-							<Avatar>KS</Avatar>
-							<Typography>Kshutrgunh Sinha</Typography>
-						</TableCell>
-						<TableCell
-							align="right"
-							sx={{
-								border: "0"
-							}}
-						>
-							+450
-						</TableCell>
-					</TableRow>
+					))}
+					
 				</TableBody>
 			</Table>
 		</TableContainer>

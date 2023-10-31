@@ -5,17 +5,23 @@ import { AllOver } from "./AllOver";
 import { LastWeek } from "./LastWeek";
 import { ThisMonth } from "./ThisMonth";
 import { fetchAllUser } from "@api/leaderboard";
+import { calculateXp } from "@api/leaderboard";
 
 export const Leaderboard = () => {
 	const [leaderBoardTab, setLeaderBoardTab] = useState("This Month");
+	
 	useEffect(() => {
-		const engineers = fetchAllUser();
-		console.log("engineers",engineers);
+	  const fetchData = async () => {
+		try {
+			const xp = await calculateXp();
+			console.log("xp", xp);
+		} catch (error) {
+			console.log(error);
+		
+		}};
+		fetchData(); // Call the asynchronous function inside useEffect
 	}, [])
 	
-
-	
-	console.log("leaderBoardTab");
 
 	const handleClick = (e) => {
 		setLeaderBoardTab(e.target.title);
