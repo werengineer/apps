@@ -9,6 +9,10 @@ import { calculateXp } from "@api/leaderboard";
 
 export const Leaderboard = () => {
 	const [leaderBoardTab, setLeaderBoardTab] = useState("This Month");
+	const [legDate, setLegDate] = useState(new Date());
+
+	const startDate = new Date();
+  startDate.setDate(legDate.getDate() - 7);
 	
 	useEffect(() => {
 	  const fetchData = async () => {

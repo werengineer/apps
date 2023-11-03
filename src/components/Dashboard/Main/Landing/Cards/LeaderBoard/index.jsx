@@ -168,14 +168,14 @@ export const LeaderBoardCard = () => {
               }}
             >
               <Box display={"flex"} alignItems={"center"} gap={"15px"}>
-                <Avatar>{higherRankUser.avatar}</Avatar>
+                <Avatar src={higherRankUser.avatar}></Avatar>
                 <Typography>{higherRankUser.name}</Typography>
               </Box>
               <Typography>{higherRankUser.xp}</Typography>
               <Typography>+465</Typography>
             </Box>
           ) : (
-            <Typography>Loading...</Typography> // You can customize the loading message
+            <Typography>Loading...</Typography> 
           )}
           <Box
             sx={{
@@ -188,7 +188,7 @@ export const LeaderBoardCard = () => {
             }}
           >
             <Box display={"flex"} alignItems={"center"} gap={"15px"}>
-              <Avatar>{engineer.avatar}</Avatar>
+              <Avatar src={engineer.avatar}></Avatar>
               <Typography>{engineer.name}</Typography>
             </Box>
             <Typography>{engineer.xp}</Typography>
@@ -208,14 +208,14 @@ export const LeaderBoardCard = () => {
               }}
             >
               <Box display={"flex"} alignItems={"center"} gap={"15px"}>
-                <Avatar>{lowerRankUser.avatar}</Avatar>
+                <Avatar src={lowerRankUser.avatar}></Avatar>
                 <Typography>{lowerRankUser.name}</Typography>
               </Box>
               <Typography>{lowerRankUser.xp}</Typography>
               <Typography>+465</Typography>
             </Box>
           ) : (
-            <Typography>Loading...</Typography> // You can customize the loading message
+            <Typography>Loading...</Typography> 
           )}
         </Box>
         <Button

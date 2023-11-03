@@ -336,7 +336,7 @@ const Index = ({ profile }) => {
 			  console.log("Progress")
             }}
           >
-            Progress soso
+            Progress
           </Button>
         </Box>
 

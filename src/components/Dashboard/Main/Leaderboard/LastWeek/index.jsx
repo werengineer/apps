@@ -1,3 +1,4 @@
+"use client";
 import {
 	Box,
 	Avatar,
@@ -10,9 +11,12 @@ import {
 	Typography
 } from "@mui/material";
 import Image from "next/image";
-import React from "react";
 
-export const LastWeek = () => {
+import React, { useEffect, useState } from "react";
+
+
+export const LastWeek = ({legDate}) => {
+
 	return (
 		<TableContainer sx={{}}>
 			<Table>

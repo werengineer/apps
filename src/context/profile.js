@@ -281,6 +281,7 @@ const ProfileState = (props) => {
 			return;
 		}
 		setTab(tab);
+		searchParams.get("tab", tab);
 	};
 
 	const handleFollow = async () => {

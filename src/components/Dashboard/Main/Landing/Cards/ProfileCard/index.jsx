@@ -120,7 +120,7 @@ export const ProfileCard = () => {
 							color: "#212121"
 						}
 					}}
-					onClick={() => router.push("/profile")}
+					onClick={() => router.push("/profile?tab=progress")}
 				>
 					Go To Profile
 				</Button>

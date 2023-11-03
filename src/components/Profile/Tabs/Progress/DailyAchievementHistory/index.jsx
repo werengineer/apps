@@ -61,6 +61,7 @@ export const DailyAchievementHistory = ({legDate}) => {
 					// Extract the 'data' property from each response
 					const allData = responses.map((response) => response.data);
 					// allData?.map((data) => setDailyAchievement((dailyData) => [...dailyData, data]));
+					console.log("all data",allData);
 					setLast7DaysHistory(allData);
 				})
 				.catch((error) => {
@@ -86,6 +87,7 @@ export const DailyAchievementHistory = ({legDate}) => {
 			rewards.push(rewardsInPercentage);
 		});
 		setRewards(rewards);
+		console.log("rewards",rewards);
 	}, [last7DaysHistory]);
 
 	return (

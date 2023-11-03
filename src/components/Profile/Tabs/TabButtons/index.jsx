@@ -1,11 +1,23 @@
 import { ProfileContext } from "@context/profile";
 import { Box, Button, Typography } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useState,useContext } from "react";
 import { Btn } from "./Btn";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export const TabButtons = () => {
 	const profileContext = useContext(ProfileContext);
 	const { tab, handleTabClick, self } = profileContext;
+	const params = useSearchParams();
+	const [section, setSection] = useState("progress");
+
+	const handleButtonClick = (paramValue) => {
+    const currentURL = window.location.href;
+    const urlWithoutQueryString = currentURL.split('?')[0];
+    const newURL = `${urlWithoutQueryString}?tab=${paramValue}`;
+    window.history.replaceState(null, null, newURL);
+  };
+	
+
 
 	return (
 		<Box
@@ -37,7 +49,11 @@ export const TabButtons = () => {
 						borderTopRightRadius: "10px",
 						display: self ? "flex" : "none"
 					}}
-					onClick={() => handleTabClick({ tab: "progress" })}
+					onClick={() => {
+						handleButtonClick("progress");
+						handleTabClick({ tab: "progress" });
+					  }}
+					  
 				>
 					Progress
 				</Button>
@@ -55,7 +71,7 @@ export const TabButtons = () => {
 						borderTopLeftRadius: "10px",
 						borderTopRightRadius: "10px"
 					}}
-					onClick={() => handleTabClick({ tab: "questions" })}
+					onClick={() =>{handleButtonClick("questions"); handleTabClick({ tab: "questions" })}}
 				>
 					{self ? "Your" : ""} Questions
 				</Button>
@@ -73,7 +89,7 @@ export const TabButtons = () => {
 						borderTopLeftRadius: "10px",
 						borderTopRightRadius: "10px"
 					}}
-					onClick={() => handleTabClick({ tab: "stories" })}
+					onClick={() => {handleButtonClick("stories");; {handleTabClick({ tab: "stories" })}}}
 				>
 					{self ? "Your" : ""} Stories
 				</Button>
@@ -92,7 +108,7 @@ export const TabButtons = () => {
 						borderTopRightRadius: "10px",
 						display: self ? "flex" : "none"
 					}}
-					onClick={() => handleTabClick({ tab: "wallet" })}
+					onClick={() => {handleButtonClick("wallet");handleTabClick({ tab: "wallet" })}}
 				>
 					Wallet
 				</Button>
