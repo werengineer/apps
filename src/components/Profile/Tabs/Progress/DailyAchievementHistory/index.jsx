@@ -56,6 +56,7 @@ export const DailyAchievementHistory = ({legDate}) => {
 					headers: { EngineerID: engineer?._id }
 				})
 			);
+			console.log("promises",promises);
 			Promise.all(promises)
 				.then((responses) => {
 					// Extract the 'data' property from each response
@@ -70,9 +71,11 @@ export const DailyAchievementHistory = ({legDate}) => {
 		};
 		fetchHistory();
 	}, [last7days]);
+	console.log("last7DaysHistory",last7DaysHistory);
 
 	useEffect(() => {
 		const map = last7DaysHistory.map((data) => data.dailyAchievements);
+		console.log("map",map);
 		let rewards = [];
 		map.map((obj) => {
 			let currentDaysRewards = 0;
@@ -89,6 +92,8 @@ export const DailyAchievementHistory = ({legDate}) => {
 		setRewards(rewards);
 		console.log("rewards",rewards);
 	}, [last7DaysHistory]);
+	// console.log("last7DaysHistory",last7DaysHistory);
+
 
 	return (
 		<Box

@@ -294,7 +294,7 @@ export const Wallet = () => {
 				</Box>
 			</Box>
 
-			<Box
+			{/* <Box
 				sx={{
 					display: "flex",
 					flexDirection: "column",
@@ -337,7 +337,7 @@ export const Wallet = () => {
 				>
 					Try Premium
 				</Button>
-			</Box>
+			</Box> */}
 		</Box>
 	);
 };

@@ -1,11 +1,25 @@
 import { fetchAllUser } from "@api/leaderboard";
 import { dashboardState } from "@atom";
-import { Avatar, Box, Button, LinearProgress, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  LinearProgress,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Badge
+} from "@mui/material";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { getEngineer } from "@cookies";
 import { useEffect } from "react";
+import { nFormatter } from "@hooks/nFormatter";
 
 export const LeaderBoardCard = () => {
   const router = useRouter();
@@ -14,6 +28,8 @@ export const LeaderBoardCard = () => {
   const [dashboard, setDashboard] = useRecoilState(dashboardState);
   const [higherRankUser, setHigherRankUser] = useState();
   const [lowerRankUser, setLowerRankUser] = useState();
+  // const [userXp, setUserXp] = useState(0);
+  const [cal, setCal] = useState([]);
 
   console.log("engineer520", engineer);
 
@@ -32,26 +48,38 @@ export const LeaderBoardCard = () => {
   }, []);
 
   const calculateLevel = (xp) => {
-    console.log("xp", xp);
-    return Math.floor(xp / 10000); // Increase level every 10000 XP
+    let currentXP = 10000;
+    let previousXP = 0;
+    let level = 1;
+
+    while (xp >= currentXP) {
+      xp -= currentXP;
+      let temp = currentXP;
+      currentXP += previousXP;
+      previousXP = temp;
+      level++;
+    }
+    cal.push(level - 1, currentXP + previousXP);
+    return cal;
   };
-
   useEffect(() => {
-    const levelProgress = ((engineer.xp % 10000) / 10000) * 100;
+    const calci = calculateLevel(engineer.xp);
+    console.log("calci", calci);
+    console.log("level", calci[0]);
+    const userXp = calci[1];
+    console.log("userXp", userXp);
+    const levelProgress = userXp > 0 ? (engineer.xp / userXp) * 100 : 0;
     console.log("levelProgress", levelProgress);
-
-    const currentLevel = calculateLevel(engineer.xp);
-    console.log("currentLevel", currentLevel);
 
     setDashboard((prevDashboard) => ({
       ...prevDashboard,
-      level: currentLevel,
+      level: calci[0],
       progress: levelProgress,
+      remXp: calci[1]-engineer.xp
     }));
   }, [engineer.xp]);
-  
+
   useEffect(() => {
-    // This code will run every time allEngineers state is updated
     console.log("allEngineers", allEngineers);
     const currentEngineer = allEngineers.find(
       (engineer) => engineer._id === getEngineer()._id
@@ -63,16 +91,12 @@ export const LeaderBoardCard = () => {
         (engineer) => engineer.rank === currentEngineer.rank
       );
       console.log("currentIndex", currentIndex.rank);
-
-      // Fetch higher rank user
       setHigherRankUser(
         allEngineers.find(
           (engineer) => engineer.rank === currentEngineer.rank - 1
         )
       );
       console.log("higherRankUser", higherRankUser);
-
-      // Fetch lower rank user
       setLowerRankUser(
         allEngineers.find(
           (engineer) => engineer.rank === currentEngineer.rank + 1
@@ -83,21 +107,19 @@ export const LeaderBoardCard = () => {
   }, [allEngineers]);
 
   useEffect(() => {
-    // console.log("allEngineers", allEngineers);
-    const specificEngineerId = engineer._id; // Replace with the actual _id you are looking for
-    // const specificEngineer = allEngineers.find(engineers => engineers._id === specificEngineerId);
+    const specificEngineerId = engineer._id;
     console.log("specificEngineer", specificEngineerId);
     setDashboard((prevDashboard) => ({
       ...prevDashboard,
-      // rank: rank
     }));
   }, []);
 
   const handleLeaderboardClick = () => {
     setDashboard((prevDashboard) => ({
       ...prevDashboard,
-      level: calculateLevel(engineer.xp), // Recalculate level when leaderboard is clicked
-      progress: ((engineer.xp % 10000) / 10000) * 100,
+      level: cal[0],
+      progress: cal[1] > 0 ? (engineer.xp / cal[1]) * 100 : 0,
+      remXp: cal[1]-engineer.xp
     }));
     router.push("/leaderboard");
   };
@@ -120,7 +142,7 @@ export const LeaderBoardCard = () => {
       <Box display={"flex"} flexDirection={"column"} gap={"10px"}>
         <Typography>
           You have {engineer.xp}XP required more{" "}
-          {(dashboard.level + 1) * 10000 - engineer.xp}XP for level up
+          {dashboard.remXp}XP for level up
         </Typography>
         <LinearProgress
           value={dashboard.progress}
@@ -136,8 +158,8 @@ export const LeaderBoardCard = () => {
           paddingX={"13px"}
           color={"grey"}
         >
-          <Typography fontSize={"14px"}>Level {dashboard.level}</Typography>
-          <Typography fontSize={"14px"}>Level {dashboard.level + 1}</Typography>
+          <Typography fontSize={"14px"}>Level {dashboard?.level}</Typography>
+          <Typography fontSize={"14px"}>Level {dashboard?.level + 1}</Typography>
         </Box>
       </Box>
 
@@ -154,69 +176,157 @@ export const LeaderBoardCard = () => {
             flexDirection: "column",
           }}
         >
-          {higherRankUser ? (
-            <Box
-              sx={{
-                backgroundColor: "#333333",
-              borderBottomLeftRadius: "10px",
-              borderBottomRightRadius: "10px",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              paddingX: "20px",
-              paddingY: "10px",
-              }}
-            >
-              <Box display={"flex"} alignItems={"center"} gap={"15px"}>
-                <Avatar src={higherRankUser.avatar}></Avatar>
-                <Typography>{higherRankUser.name}</Typography>
-              </Box>
-              <Typography>{higherRankUser.xp}</Typography>
-              <Typography>+465</Typography>
-            </Box>
-          ) : (
-            <Typography>Loading...</Typography> 
-          )}
-          <Box
-            sx={{
-              backgroundColor: "#1D5352",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              paddingX: "20px",
-              paddingY: "10px",
-            }}
-          >
-            <Box display={"flex"} alignItems={"center"} gap={"15px"}>
-              <Avatar src={engineer.avatar}></Avatar>
-              <Typography>{engineer.name}</Typography>
-            </Box>
-            <Typography>{engineer.xp}</Typography>
-            <Typography>+465</Typography>
-          </Box>
-          {lowerRankUser ? (
-            <Box
-              sx={{
-                backgroundColor: "#333333",
-              borderBottomLeftRadius: "10px",
-              borderBottomRightRadius: "10px",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              paddingX: "20px",
-              paddingY: "10px",
-              }}
-            >
-              <Box display={"flex"} alignItems={"center"} gap={"15px"}>
-                <Avatar src={lowerRankUser.avatar}></Avatar>
-                <Typography>{lowerRankUser.name}</Typography>
-              </Box>
-              <Typography>{lowerRankUser.xp}</Typography>
-              <Typography>+465</Typography>
-            </Box>
-          ) : (
-            <Typography>Loading...</Typography> 
-          )}
+          <TableContainer sx={{}}>
+            <Table>
+              <TableBody sx={{}}>
+                {higherRankUser ? (
+                  <TableRow
+                    sx={{
+                      border: "0",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {router.push(`/profile/${higherRankUser?._id}`)}}
+                  >
+                    <TableCell
+                      align="left"
+                      sx={{
+                        border: "0",
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        alignItems: "center",
+                        gap: "1vw",
+                      }}
+                    >
+                      <Avatar src={higherRankUser?.avatar}></Avatar>
+                      <Typography>{higherRankUser?.name}</Typography>
+                    </TableCell>
+                    <TableCell
+                      align="center"
+                      sx={{
+                        border: "0",
+                      }}
+                    >
+                      {/* <Avatar src={higherRankUser.avatar}></Avatar>
+                    <Typography>{higherRankUser.name}</Typography> */}
+                      <Typography>
+                        {nFormatter(higherRankUser?.xp, 0)}
+                      </Typography>
+                    </TableCell>
+                    <TableCell
+                      align="right"
+                      sx={{
+                        border: "0",
+                      }}
+                    >
+                      {higherRankUser?.coins}
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  <Typography>...</Typography>
+                )}
+
+                <TableRow
+                  sx={{
+                    backgroundColor: "#1D5352",
+                    border: "0",
+                    height: "10px",
+                  }}
+                >
+                  <TableCell
+                    align="left"
+                    sx={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      gap: "1vw",
+                      border: "0",
+                      width: ["auto", "20vw"],
+                      //   mx: 'auto',
+                      //   ml: [0, 35]
+                    }}
+                  >
+                    <Badge
+                      overlap="circular"
+                      anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                      badgeContent={
+                        <Typography sx={{bgcolor:"white",color:"black", fontSize:"10px", padding:"4px", borderRadius:"100%"}}>L{dashboard?.level}</Typography>
+                      }
+                    >
+                      <Avatar
+                        src={engineer?.avatar}
+                      />
+                    </Badge>
+                    <Typography>{engineer?.name}</Typography>
+                  </TableCell>
+
+                  <TableCell
+                    align="center"
+                    sx={{
+                      border: "0",
+                    }}
+                  >
+                    {nFormatter(engineer?.xp, 0)}
+                  </TableCell>
+
+                  <TableCell
+                    align="right"
+                    sx={{
+                      border: "0",
+                    }}
+                  >
+                    {engineer?.coins}
+                  </TableCell>
+                </TableRow>
+
+                {lowerRankUser ? (
+                  <TableRow
+                    sx={{
+                      border: "0",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {router.push(`/profile/${lowerRankUser?._id}`)}}
+                  >
+                    <TableCell
+                      align="left"
+                      sx={{
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        alignItems: "center",
+                        width: ["auto", "20vw"],
+                        border: "0",
+                        gap: "1vw",
+                        //   mx: 'auto',
+                        //   ml: [0, 35]
+                      }}
+                    >
+                      <Avatar src={lowerRankUser?.avatar}></Avatar>
+                      <Typography>{lowerRankUser?.name}</Typography>
+                    </TableCell>
+
+                    <TableCell
+                      align="center"
+                      sx={{
+                        border: "0",
+                      }}
+                    >
+                      {nFormatter(lowerRankUser?.xp, 0)}
+                    </TableCell>
+
+                    <TableCell
+                      align="right"
+                      sx={{
+                        border: "0",
+                      }}
+                    >
+                      {lowerRankUser?.coins}
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  <Typography>...</Typography>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </Box>
         <Button
           sx={{

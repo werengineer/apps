@@ -8,6 +8,7 @@ import { getEngineer } from "@cookies";
 import { useCoinsStore } from "@store";
 import axios from "axios";
 import { API_URL } from "@constants";
+import { getCookie } from "cookies-next";
 
 export const DashboardMain = () => {
 	const router = useRouter();
@@ -16,7 +17,7 @@ export const DashboardMain = () => {
 
 	useEffect(() => {
 		const fetchEngineer = async () => {
-			if(sessionStorage.getItem('userKey')){
+			if(getCookie('userKey')){
 			const res = await axios.get(`${API_URL}/engineer/get?id=${engineer._id}`);
 			setCoins(res.data?.coins);
 			}

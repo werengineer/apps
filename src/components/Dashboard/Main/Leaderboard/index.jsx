@@ -8,11 +8,9 @@ import { fetchAllUser } from "@api/leaderboard";
 import { calculateXp } from "@api/leaderboard";
 
 export const Leaderboard = () => {
-	const [leaderBoardTab, setLeaderBoardTab] = useState("This Month");
+	const [leaderBoardTab, setLeaderBoardTab] = useState("All Over");
 	const [legDate, setLegDate] = useState(new Date());
-
-	const startDate = new Date();
-  startDate.setDate(legDate.getDate() - 7);
+	console.log("legDate", legDate);
 	
 	useEffect(() => {
 	  const fetchData = async () => {
@@ -64,7 +62,7 @@ export const Leaderboard = () => {
 					Last Week
 				</Button>
 
-				<Button
+				{/* <Button
 					sx={{
 						backgroundColor: leaderBoardTab === "This Month" ? "#1D5352" : "#333333",
 						width: ["auto", "12vw"],
@@ -76,7 +74,7 @@ export const Leaderboard = () => {
 					onClick={handleClick}
 				>
 					This Month
-				</Button>
+				</Button> */}
 
 				<Button
 					sx={{
@@ -98,8 +96,8 @@ export const Leaderboard = () => {
 
 			<Box width={"100%"}>
 				{leaderBoardTab === "All Over" && <AllOver />}
-				{leaderBoardTab === "Last Week" && <LastWeek />}
-				{leaderBoardTab === "This Month" && <ThisMonth />}
+				{leaderBoardTab === "Last Week" && <LastWeek legDate={legDate}/>}
+				{/* {leaderBoardTab === "This Month" && <ThisMonth />} */}
 			</Box>
 		</Box>
 	);

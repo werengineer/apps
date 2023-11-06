@@ -14,6 +14,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { fetchAllUser } from "@api/leaderboard";
 import { getEngineer } from "@cookies";
+import { nFormatter } from "@hooks/nFormatter";
 
 
 
@@ -41,7 +42,7 @@ export const AllOver = () => {
 	return (
 		<TableContainer component={Box} sx={{ overflowY: 'auto', maxHeight: '75vh' }}>
 			<Table>
-				<TableHead>
+			<TableHead>
 					<TableRow>
 						<TableCell
 							align="left"
@@ -52,7 +53,6 @@ export const AllOver = () => {
 							Rank
 						</TableCell>
 						<TableCell
-							//   align="center"
 							sx={{
 								"&:last-child td, &:last-child th": {
 									border: "0px",
@@ -77,21 +77,21 @@ export const AllOver = () => {
 								}}
 							>
 								<Image width={30} height={30} src={"/icons/Axe.svg"} alt={"axe img"} />
-								<Typography>Total TPs</Typography>
+								<Typography>Total XPs</Typography>
 							</Box>
 						</TableCell>
 					</TableRow>
 				</TableHead>
 
 				<TableBody sx={{}}>
-				{users.map((user, index) => (
+				{users?.map((user, index) => (
 					<TableRow
 						sx={{
 							backgroundColor: engineer._id === user._id? "#1D5352":"none",
 							border: "0",
-							height: "10px"
+							height: engineer._id === user._id? "10px":"none"
 						}}
-						key={user._id}
+						key={user?._id}
 					>
 						<TableCell
 							align="left"
@@ -99,7 +99,7 @@ export const AllOver = () => {
 								border: "0"
 							}}
 						>
-							{user.rank}
+							#{user?.rank}
 						</TableCell>
 
 						<TableCell
@@ -116,8 +116,8 @@ export const AllOver = () => {
 								//   ml: [0, 35]
 							}}
 						>
-							<Avatar>{user.avatar}</Avatar>
-							<Typography>{user.name}</Typography>
+							<Avatar src={user?.avatar}></Avatar>
+							<Typography>{user?.name}</Typography>
 						</TableCell>
 						<TableCell
 							align="right"
@@ -125,7 +125,7 @@ export const AllOver = () => {
 								border: "0"
 							}}
 						>
-							{user.xp}
+							<Typography> {nFormatter(user?.xp, 0)} </Typography>
 						</TableCell>
 					</TableRow>
 					))}

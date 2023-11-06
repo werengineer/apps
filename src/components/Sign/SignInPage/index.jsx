@@ -10,12 +10,13 @@ import { useRouter } from "next/navigation";
 import { useSnackbar } from "notistack";
 import React, { useContext, useEffect, useState } from "react";
 import { googleSignin, signinNormal } from "./Functions";
+import { getCookies } from "cookies-next";
 
 export const SignInPage = () => {
 
 	
 	useEffect(() => {
-		const token = sessionStorage.getItem('userKey');
+		const token = getCookies('userKey');
 		
 		if (token !== undefined) {
 			try {
