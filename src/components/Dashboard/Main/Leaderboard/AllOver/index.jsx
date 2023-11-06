@@ -10,6 +10,7 @@ import {
 	Typography
 } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { useState, useEffect } from "react";
 import { fetchAllUser } from "@api/leaderboard";
@@ -20,6 +21,7 @@ import { nFormatter } from "@hooks/nFormatter";
 
 export const AllOver = () => {
 	const [users, setUsers] = useState([]);
+	const router = useRouter();
 	const engineer = getEngineer();
 
 	useEffect(() => {
@@ -89,15 +91,18 @@ export const AllOver = () => {
 						sx={{
 							backgroundColor: engineer._id === user._id? "#1D5352":"none",
 							border: "0",
-							height: engineer._id === user._id? "10px":"none"
+							height: engineer._id === user._id? "10px":"none",
+							cursor: "pointer",
 						}}
 						key={user?._id}
+						onClick={()=>router.push(`/profile/${user?._id}`)}
 					>
 						<TableCell
 							align="left"
 							sx={{
 								border: "0"
 							}}
+							
 						>
 							#{user?.rank}
 						</TableCell>

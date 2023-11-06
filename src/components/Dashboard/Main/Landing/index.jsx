@@ -20,12 +20,8 @@ import { useRouter } from "next/navigation";
 import { firebaseAuth } from "@fb";
 import { sendEmailVerification } from "firebase/auth";
 import { AchievementState } from "@context/achievements";
-<<<<<<< HEAD
-import { fetchAllUser } from "@api/leaderboard";
-=======
 import { ClusterCard } from "./Cards/ClusterCard";
 import { fetchClusters } from "@api";
->>>>>>> 59ea66a84ae886b05dc3923999276ad80938383e
 
 export const MainDashboard = () => {
 	const [engineer, setEngineer] = useState();

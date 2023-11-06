@@ -119,9 +119,9 @@ export const AllOver = ({legDate, API_URL, axios}) => {
 			);
 			const allData = responses.map((userResponses, userIndex) => {
 			  return {
-				engineer: allUsers[userIndex]._id,
-				avatar: allUsers[userIndex].avatar,
-				name: allUsers[userIndex].name,
+				engineer: allUsers[userIndex]?._id,
+				avatar: allUsers[userIndex]?.avatar,
+				name: allUsers[userIndex]?.name,
 				data: userResponses.map((response, dateIndex) => {
 				  return {
 					data: response.data, 
