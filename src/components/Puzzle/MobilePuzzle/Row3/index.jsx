@@ -21,7 +21,7 @@ export const Row3 = () => {
 				) : content[8]?.status === "In Progress" ? (
 					<Image src={"/puzzles/mobile/current/1.svg"} alt="puzzle p00" fill />
 				) : (
-					<Image src={"/puzzles/mobile/Locked/1.svg"} alt="puzzle p00" fill />
+					<Image src={"/puzzles/mobile/locked/1.svg"} alt="puzzle p00" fill />
 				)}
 				<Button
 					onClick={() => handlePuzzleClick({ i: 8 })}
@@ -66,7 +66,7 @@ export const Row3 = () => {
 				) : content[9]?.status === "In Progress" ? (
 					<Image src={"/puzzles/mobile/current/2.svg"} alt="puzzle p00" fill />
 				) : (
-					<Image src={"/puzzles/mobile/Locked/2.svg"} alt="puzzle p00" fill />
+					<Image src={"/puzzles/mobile/locked/2.svg"} alt="puzzle p00" fill />
 				)}
 				<Button
 					onClick={() => handlePuzzleClick({ i: 9 })}
@@ -113,7 +113,7 @@ export const Row3 = () => {
 				) : content[10]?.status === "In Progress" ? (
 					<Image src={"/puzzles/mobile/current/3.svg"} alt="puzzle p00" fill />
 				) : (
-					<Image src={"/puzzles/mobile/Locked/3.svg"} alt="puzzle p00" fill />
+					<Image src={"/puzzles/mobile/locked/3.svg"} alt="puzzle p00" fill />
 				)}
 				<Button
 					onClick={() => handlePuzzleClick({ i: 10 })}
@@ -160,7 +160,7 @@ export const Row3 = () => {
 				) : content[11]?.status === "In Progress" ? (
 					<Image src={"/puzzles/mobile/current/4.svg"} alt="puzzle p00" fill />
 				) : (
-					<Image src={"/puzzles/mobile/Locked/4.svg"} alt="puzzle p00" fill />
+					<Image src={"/puzzles/mobile/locked/4.svg"} alt="puzzle p00" fill />
 				)}
 				<Button
 					onClick={() => handlePuzzleClick({ i: 11 })}

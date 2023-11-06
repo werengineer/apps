@@ -1,6 +1,7 @@
 import { API_URL } from "@constants";
 import { getEngineer } from "@cookies";
 import axios from "axios";
+import { setCookie } from "cookies-next";
 
 const eng = getEngineer();
 
@@ -89,7 +90,7 @@ export const getGeneralEngineer = async ({ id, username, email }) => {
 		} else {
 			await axios.get(`${API_URL}/engineer/get`);
 		}
-		sessionStorage.setItem("userKey", JSON.stringify(engineer?.data));
+		setCookie("userKey", JSON.stringify(engineer?.data));
 
 		return engineer?.data;
 	} catch (error) {

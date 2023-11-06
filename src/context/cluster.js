@@ -41,7 +41,7 @@ const ClustersState = ({ children }) => {
 				console.log(res);
 				setClusters(res);
 			} catch (error) {
-				throw new ServerError("Server Error");
+				new ServerError("Server Error");
 			} finally {
 				setLoading(false);
 			}

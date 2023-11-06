@@ -14,14 +14,6 @@ export const SideNav = () => {
 	const pathName = usePathname();
 	const router = useRouter();
 	const coins = useCoinsStore((state) => state.coins);
-	// // const { subscription } = getSubscription();
-	// const [subed, setSubed] = useState();
-
-	// const coinValue = JSON.parse(sessionStorage.getItem("userKey"));
-	// const getSub = async () => {
-	// 	setSubed(await subscription());
-	// };
-	// getSub();
 
 	return (
 		<Box

@@ -17,11 +17,12 @@ import { LoadingButton } from "@mui/lab";
 import { useSetRecoilState } from "recoil";
 import { otpModal } from "@atom";
 import { MobileVerificationModal } from "@components/Settings/EditProfile/MobileVerificationModal";
+import { getCookie } from "cookies-next";
 
 export const SignUpPage = () => {
 	
 	useEffect(() => {
-		const token = sessionStorage.getItem('userKey');
+		const token = getCookie('userKey');
 		
 		if (token !== undefined) {
 			try {

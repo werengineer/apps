@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const fetchClusters = async () => {
 	try {
-		const res = await axios.get(`${API_URL}/cluster/getClusters`);
+		const res = await axios.get(`${API_URL}/cluster`);
 		return res.data;
 	} catch (error) {
 		throw new ServerError("Server Error");

@@ -1,6 +1,7 @@
 "use client";
 import { DashboardMain } from "@components";
 import Box from "@mui/material/Box";
+import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 // import { firebaseAuth } from "../firebase";
@@ -10,7 +11,7 @@ export default function DashboardPage() {
 	const router = useRouter();
 
 	useEffect(() => {
-		const token = sessionStorage.getItem('userKey');
+		const token = getCookie('userKey');
 		
 		if (token !== undefined) {
 			try {
