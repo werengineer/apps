@@ -47,21 +47,21 @@ export const LeaderBoardCard = () => {
     fetchData(); // Call the asynchronous function inside useEffect
   }, []);
 
-  const calculateLevel = (xp) => {
-    let currentXP = 10000;
-    let previousXP = 0;
-    let level = 1;
+ const calculateLevel = (xp) => {
+		let currentXP = 10000;
+		let previousXP = 0;
+		let level = 0;
 
-    while (xp >= currentXP) {
-      xp -= currentXP;
-      let temp = currentXP;
-      currentXP += previousXP;
-      previousXP = temp;
-      level++;
-    }
-    cal.push(level - 1, currentXP + previousXP);
-    return cal;
-  };
+		while (xp >= currentXP) {
+			let temp = currentXP;
+			currentXP += previousXP;
+			level++;
+			previousXP = temp;
+		}
+		cal.push(level === 0 ? level + 1 : level - 1, currentXP);
+		return cal;
+ };
+  
   useEffect(() => {
     const calci = calculateLevel(engineer.xp);
     console.log("calci", calci);
