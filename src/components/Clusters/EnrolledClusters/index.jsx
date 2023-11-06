@@ -1,6 +1,6 @@
 "use client";
 import { Box, Button, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useContext } from "react";
 import { ClustersContext } from "@context/cluster";
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
@@ -68,11 +68,7 @@ export const EnrolledClusters = () => {
 					// })}
 					onClick={() => handleViewMoreClick({ group: "enrolledClusters" })}
 				>
-					{viewMore.enrolledClusters === true ? (
-						<KeyboardArrowUp />
-					) : (
-						<KeyboardArrowDown />
-					)}
+					{viewMore.enrolledClusters === true ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
 					View More
 				</Button>
 			</Box>

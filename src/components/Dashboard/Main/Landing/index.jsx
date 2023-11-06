@@ -20,6 +20,8 @@ import { useRouter } from "next/navigation";
 import { firebaseAuth } from "@fb";
 import { sendEmailVerification } from "firebase/auth";
 import { AchievementState } from "@context/achievements";
+import { ClusterCard } from "./Cards/ClusterCard";
+import { fetchClusters } from "@api";
 
 export const MainDashboard = () => {
 	const [engineer, setEngineer] = useState();
@@ -29,6 +31,7 @@ export const MainDashboard = () => {
 		setEngineer(getEngineer);
 	}, []);
 	const [list, setList] = useState([]);
+	const [cluster, setCluster] = useState([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -39,16 +42,25 @@ export const MainDashboard = () => {
 				setList(res);
 			} catch (error) {
 				setList([]);
-				// console.log(error);
+				console.log(error);
 			} finally {
 				setLoading(false);
 			}
 		};
 		getList();
-
-		if (list.length === 0) {
-			getList();
-		}
+		const getCluster = async () => {
+			try {
+				const res = await fetchClusters();
+				console.log(res);
+				setCluster(res);
+			} catch (error) {
+				setCluster([]);
+				console.log(error);
+			} finally {
+				setLoading(false);
+			}
+		};
+		getCluster();
 	}, []);
 
 	return (
@@ -99,6 +111,15 @@ export const MainDashboard = () => {
 			>
 				<ClubsCard />
 				<DiscordCard />
+			</Box>
+			<Box
+				display={"flex"}
+				gap={["3vh", "2%"]}
+				alignItems={["center", "flex-start"]}
+				width={"97.5%"}
+			>
+				{/* <BlogsCard /> */}
+				<ClusterCard clusters={cluster} />
 			</Box>
 			<Box
 				display={"flex"}

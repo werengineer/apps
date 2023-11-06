@@ -161,7 +161,8 @@ const ClustersState = ({ children }) => {
 				handleViewMoreClick,
 				handleFilterClick,
 				enrollToCluster,
-				openCluster
+				openCluster,
+				setFilter
 			}}
 		>
 			{children}
