@@ -20,9 +20,6 @@ import { signOut } from "firebase/auth";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 
-
-
-
 export const Navbar = () => {
 	const router = useRouter();
 	const engineer = getEngineer();
@@ -40,11 +37,10 @@ export const Navbar = () => {
 		setAnchorEl(null);
 	};
 	const logout = () => {
-	
-		// removeCookies("engineer");
+		removeCookies("engineer");
+		removeCookies("userKey");
 		logoutUser();
-		 signOut(firebaseAuth);
-		 sessionStorage.clear();
+		signOut(firebaseAuth);
 		router.push("/signin");
 	};
 	useEffect(() => {
@@ -146,46 +142,13 @@ export const Navbar = () => {
 						{!engineer ? (
 							<>
 								{pathName === "/signin" ? (
-									<Box sx={{
-										display: "flex",
-										alignItems: "center",
-										gap: "2vw"
-									}}
+									<Box
+										sx={{
+											display: "flex",
+											alignItems: "center",
+											gap: "2vw"
+										}}
 									>
-										<Button
-											onClick={() => router.push("/questions")}
-											sx={{
-												fontSize: "15px",
-												color: "#ffffff",
-												border: "1px solid #ffffff",
-												"&:hover": {
-													backgroundColor: "#ffffff",
-													color: "black"
-												},
-												fontWeight: 700,
-												paddingX: ["0px", "30px"],
-												borderRadius: "25px"
-											}}
-										>
-											<Typography fontSize={["12px", "15px"]}>Explore Questions</Typography>
-										</Button>
-										<Button
-											onClick={() => router.push("/stories")}
-											sx={{
-												fontSize: "15px",
-												color: "#ffffff",
-												border: "1px solid #ffffff",
-												"&:hover": {
-													backgroundColor: "#ffffff",
-													color: "black"
-												},
-												fontWeight: 700,
-												paddingX: ["0px", "30px"],
-												borderRadius: "25px"
-											}}
-										>
-											<Typography fontSize={["12px", "15px"]}>Explore Stories</Typography>
-										</Button>
 										<Button
 											onClick={() => router.push("/signup")}
 											sx={{
@@ -212,40 +175,6 @@ export const Navbar = () => {
 											gap: "2vw"
 										}}
 									>
-										<Button
-											onClick={() => router.push("/questions")}
-											sx={{
-												fontSize: "15px",
-												color: "#ffffff",
-												border: "1px solid #ffffff",
-												"&:hover": {
-													backgroundColor: "#ffffff",
-													color: "black"
-												},
-												fontWeight: 700,
-												paddingX: ["0px", "30px"],
-												borderRadius: "25px"
-											}}
-										>
-											<Typography fontSize={["12px", "15px"]}>Explore Questions</Typography>
-										</Button>
-										<Button
-											onClick={() => router.push("/stories")}
-											sx={{
-												fontSize: "15px",
-												color: "#ffffff",
-												border: "1px solid #ffffff",
-												"&:hover": {
-													backgroundColor: "#ffffff",
-													color: "black"
-												},
-												fontWeight: 700,
-												paddingX: ["0px", "30px"],
-												borderRadius: "25px"
-											}}
-										>
-											<Typography fontSize={["12px", "15px"]}>Explore Stories</Typography>
-										</Button>
 										<Button
 											onClick={() => router.push("/signin")}
 											sx={{
@@ -280,11 +209,10 @@ export const Navbar = () => {
 												fontWeight: 700,
 												display: ["none", "flex"],
 												border: "1px solid white",
-												borderRadius: "50px",
+												borderRadius: "50px"
 											}}
 										>
 											<Typography>SignUp</Typography>
-
 										</Button>
 										<Button
 											onClick={() => router.push("/signin")}
@@ -300,7 +228,7 @@ export const Navbar = () => {
 												fontWeight: 700,
 												display: ["none", "flex"],
 												border: "1px solid white",
-												borderRadius: "50px",
+												borderRadius: "50px"
 											}}
 										>
 											<Typography>LogIn</Typography>
@@ -344,7 +272,7 @@ export const Navbar = () => {
 									<MenuItem sx={{ justifyContent: "flex-start" }} onClick={() => logout()}>
 										<ListItem>
 											<Logout sx={{ mr: 2 }} fontSize="small" />
-										Logout
+											Logout
 										</ListItem>
 									</MenuItem>
 								</Menu>

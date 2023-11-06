@@ -18,7 +18,6 @@ export const ProfileMenu = () => {
 	
 	const logout = () => {
 		logoutUser()
-		sessionStorage.clear();
 		signOut(firebaseAuth);
 		router.push("/signin");
 	};

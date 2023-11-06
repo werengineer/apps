@@ -146,7 +146,7 @@ export const ListCard = ({ list, loading }) => {
 							</Button>
 						</Box>
 					) : (
-						Array(list)?.slice(0, 3).map((data, i) => {
+						Array(list)?.slice(0, 3)[0]?.map((data, i) => {
 							return (
 								<Box
 									display={loading ? "none" : ["flex", "flex"]}

@@ -9,13 +9,6 @@ import { Analytics } from "@vercel/analytics/react";
 export const myLink = "https://app.weareengineer.com";
 
 export default function RootLayout({ children }) {
-
-	// const [user,setUser]=useState();
-
-	// useEffect(()=>{
-	// 	setUser(sessionStorage.getItem('userKey'));
-	// },[]);
-
 	return (
 		<html>
 			<head>
