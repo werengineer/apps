@@ -34,7 +34,7 @@ export const QuestionsMain = ({ questions, fetchQuestions, completed, loading })
 				<Typography
 					sx={{
 						textAlign: "center",
-						color: "#1D5352"
+						color: "#ffffff"
 					}}
 				>
 					That was all, check out 

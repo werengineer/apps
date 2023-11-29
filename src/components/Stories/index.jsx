@@ -42,7 +42,7 @@ export const StoriesMain = ({ stories, fetchStories, completed, loading }) => {
 				<Typography
 					sx={{
 						textAlign: "center",
-						color: "#1D5352"
+						color: "#fff"
 					}}
 				>
 					That was all, check out
