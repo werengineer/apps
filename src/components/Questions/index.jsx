@@ -14,7 +14,7 @@ const StyledLink = styled('a')({
     textDecoration: 'underline',
     textDecorationColor: '#1D5352',
     marginLeft: '5px',
-    color: '#0000EE',
+    color: '#16e9d1',
     fontSize: '20px',
     '&:hover': {
         color: '#FF4500', // Change this to the desired hover color
