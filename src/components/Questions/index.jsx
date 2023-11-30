@@ -7,6 +7,20 @@ import { useRef } from "react";
 import { LoadingButton } from "@mui/lab";
 import { PropTypes } from "prop-types";
 import Link from "next/link";
+import { styled } from '@mui/system';
+
+
+const StyledLink = styled('a')({
+    textDecoration: 'underline',
+    textDecorationColor: '#1D5352',
+    marginLeft: '5px',
+    color: '#0000EE',
+    fontSize: '20px',
+    '&:hover': {
+        color: '#FF4500', // Change this to the desired hover color
+        textDecoration: 'none', // Remove underline on hover if desired
+    },
+});
 
 export const QuestionsMain = ({ questions, fetchQuestions, completed, loading }) => {
 	const containerRef = useRef(null);
@@ -30,25 +44,38 @@ export const QuestionsMain = ({ questions, fetchQuestions, completed, loading })
 			{questions?.map((q, i) => (
 				<Question data={q} key={i} />
 			))}
-			{completed && 
-				<Typography
-					sx={{
-						textAlign: "center",
-						color: "#ffffff"
-					}}
-				>
-					That was all, check out 
-					<Link
-						style={{
-							textDecorationLine: "underline",
-							textDecorationColor: "#1D5352",
-							marginLeft: "5px"
-						}}
-						href={"/stories"}
-					>
-						Stories
-					</Link>
-				</Typography>
+			{completed &&
+			<Typography
+			sx={{
+				textAlign: 'center',
+				color: '#ffffff',
+			}}
+		>
+			That was all, check out 
+			<StyledLink href="/stories">
+			 Stories
+			</StyledLink>
+		</Typography>
+				// <Typography
+				// 	sx={{
+				// 		textAlign: "center",
+				// 		color: "#ffffff"
+				// 	}}
+				// >
+				// 	That was all, check out 
+				// 	<Link
+				// 		style={{
+				// 			textDecorationLine: "underline",
+				// 			textDecorationColor: "#1D5352",
+				// 			marginLeft: "5px",
+				// 			color: "#0000EE",
+				// 			fontSize: "20px"
+				// 		}}
+				// 		href={"/stories"}
+				// 	>
+				// 		Stories
+				// 	</Link>
+				// </Typography>
 			}
 
 			<LoadingButton

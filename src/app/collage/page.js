@@ -26,7 +26,7 @@ const CollagePage = () => {
 				</Box>
 			</Box>
 		</>
-	);
+	);ḍ
 };
 
 export default CollagePage;
