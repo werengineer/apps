@@ -7,25 +7,27 @@ import { useColorScheme } from "react-native";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Colors from "../constants/Colors";
 import { CommonActions } from '@react-navigation/native';
-import { Text, BottomNavigation } from 'react-native-paper';
-import TabOneScreen from "../screens/TabOneScreen";
-import TabTwoScreen from "../screens/TabTwoScreen";
+import { Text, BottomNavigation, Badge } from 'react-native-paper';
+import TabOneScreen from "../screens/Home";
+import TabTwoScreen from "../screens/Search";
 import { Header } from "../components/Header";
+import SearchInput from "../components/SearchInput";
+import { View } from "../components/Themed";
 
 const BottomTab = createBottomTabNavigator();
 
-export default function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
-
+export default function BottomTabNavigator()
+{
   return (
     <BottomTab.Navigator
       initialRouteName="home"
-      screenOptions={{ tabBarActiveTintColor: Colors[colorScheme].tint }}
       tabBar={({ navigation, state, descriptors, insets }) => (
         <BottomNavigation.Bar
+          style={{ backgroundColor: '#000' }}
           navigationState={state}
-         safeAreaInsets={insets}
-          onTabPress={({ route, preventDefault }) => {
+          safeAreaInsets={insets}
+          onTabPress={({ route, preventDefault }) =>
+          {
             const event = navigation.emit({
               type: 'tabPress',
               target: route.key,
@@ -35,28 +37,30 @@ export default function BottomTabNavigator() {
             if (event.defaultPrevented) {
               preventDefault();
             } else {
-             navigation.dispatch({
+              navigation.dispatch({
                 ...CommonActions.navigate(route.name, route.params),
                 target: state.key,
               });
             }
           }}
-          renderIcon={({ route, focused, color }) => {
+          renderIcon={({ route, focused, color }) =>
+          {
             const { options } = descriptors[route.key];
             if (options.tabBarIcon) {
-              return options.tabBarIcon({ focused, color, size: 24 });
+              return options.tabBarIcon({ focused, color: 'white', size: 24 });
             }
 
             return null;
           }}
-          getLabelText={({ route }) => {
+          getLabelText={({ route }) =>
+          {
             const { options } = descriptors[route.key];
             const label =
               options.tabBarLabel !== undefined
                 ? options.tabBarLabel
                 : options.title !== undefined
-                ? options.title
-                : route.title;
+                  ? options.title
+                  : route.title;
 
             return label;
           }}
@@ -67,38 +71,46 @@ export default function BottomTabNavigator() {
         name="home"
         component={TabOneNavigator}
         options={{
+          title: "Home",
           headerShown: false,
-          tabBarIcon: ({ color, size }) => {
-            return <Icon name="home" size={size} color={color} />;
+          tabBarIcon: ({ color, size }) =>
+          {
+            return <Icon  name="home" size={size} color={color} />;
           },
         }}
       />
       <BottomTab.Screen
-        name="settings"
+        name="search"
         component={TabTwoNavigator}
         options={{
+          title: "Search",
           headerShown: false,
-          tabBarIcon: ({ color, size }) => {
+          tabBarIcon: ({ color, size }) =>
+          {
             return <Icon name="magnify" size={size} color={color} />;
           },
         }}
       />
       <BottomTab.Screen
-        name="notifications"
-        component={TabTwoNavigator}
+        name="profile"
+        component={TabThreeNavigator}
         options={{
+          title: "Profile",
           headerShown: false,
-          tabBarIcon: ({ color, size }) => {
+          tabBarIcon: ({ color, size }) =>
+          {
             return <Icon name="account" size={size} color={color} />;
           },
         }}
       />
       <BottomTab.Screen
-        name="profile"
-        component={TabTwoNavigator}
+        name="menu"
+        component={TabFourNavigator}
         options={{
+          title: "Menu",
           headerShown: false,
-          tabBarIcon: ({ color, size }) => {
+          tabBarIcon: ({ color, size }) =>
+          {
             return <Icon name="menu" size={size} color={color} />;
           },
         }}
@@ -109,7 +121,8 @@ export default function BottomTabNavigator() {
 
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
-function TabBarIcon(props) {
+function TabBarIcon(props)
+{
   return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
 }
 
@@ -117,7 +130,8 @@ function TabBarIcon(props) {
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
 const TabOneStack = createStackNavigator();
 
-function TabOneNavigator() {
+function TabOneNavigator()
+{
   return (
     <TabOneStack.Navigator>
       <TabOneStack.Screen
@@ -131,14 +145,46 @@ function TabOneNavigator() {
 
 const TabTwoStack = createStackNavigator();
 
-function TabTwoNavigator() {
+function TabTwoNavigator()
+{
   return (
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
-        name="settings"
+        name="search"
         component={TabTwoScreen}
-        options={{ headerTitle: (props) => <Header {...props} /> }}
+        options={{ headerShown: false }}
       />
     </TabTwoStack.Navigator>
   );
 }
+
+const TabThreeStack = createStackNavigator();
+
+function TabThreeNavigator()
+{
+  return (
+    <TabThreeStack.Navigator>
+      <TabThreeStack.Screen
+        name="profile"
+        component={TabTwoScreen}
+        options={{ headerTitle: "Profile" }}
+      />
+    </TabThreeStack.Navigator>
+  );
+}
+
+const TabFourStack = createStackNavigator();
+
+function TabFourNavigator()
+{
+  return (
+    <TabFourStack.Navigator>
+      <TabFourStack.Screen
+        name="menu"
+        component={TabTwoScreen}
+        options={{ headerTitle: "Menu" }}
+      />
+    </TabFourStack.Navigator>
+  );
+}
+

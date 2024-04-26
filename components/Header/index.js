@@ -1,6 +1,6 @@
 import { Text } from "../Themed";
 import React, { useState } from 'react';
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import Logo from '../../assets/brand/logo.svg'; // Import SVG logo
 
 export const Header = (props) => {
@@ -8,8 +8,7 @@ export const Header = (props) => {
   return (
     <>
       <View style={styles.header}>
-        {/* <Logo width={50} height={50} style={styles.logo} /> Display SVG logo */}
-        <Text style={styles.headerText}>Header</Text>
+        <Image source={require('../../assets/brand/logo.svg')} style={styles.logo} />
       </View>
     </>
   );
@@ -23,7 +22,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     width: '100%',
     height: 60, // Adjust as needed
-    backgroundColor: '#eee', // Adjust as needed
+  },
+  logo: {
+    width: 50,
+    height: 50,
   },
   headerText: {
     fontWeight: "bold",

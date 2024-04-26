@@ -11,14 +11,14 @@ export default {
     screens: {
       Root: {
         screens: {
-          TabOne: {
+          Home: {
             screens: {
-              TabOneScreen: "one",
+             Home: "home",
             },
           },
-          TabTwo: {
+          Search: {
             screens: {
-              TabTwoScreen: "two",
+              Search: "search",
             },
           },
         },
