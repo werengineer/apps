@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "WAE",
-    "slug": "We Are Engineer",
+    "slug": "wae-app",
     "scheme": "wae",
     "version": "1.0.0",
     "orientation": "portrait",
