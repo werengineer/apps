@@ -1,9 +1,14 @@
 {
-  "extends": "../../tsconfig.base",
-  "include": ["app/**/*.ts", "app/**/*.tsx"],
+  "extends": "../../tsconfig",
   "compilerOptions": {
-    "composite": true,
-    "jsx": "react-jsx"
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
+    "baseUrl": ".",
+    "paths": {
+      "app/*": ["../../packages/app/*"],
+      "@t4/api/*": ["../../packages/api/*"],
+      "@t4/ui/*": ["../../packages/ui/*"]
+    }
   },
-  "references": []
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
 }

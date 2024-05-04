@@ -1,39 +1,41 @@
 {
   "expo": {
-    "name": "wae",
-    "slug": "wae",
-    "scheme": "wae",
+    "name": "t4-app",
+    "slug": "t4-app",
+    "scheme": "t4",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "enabled": false
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.wae.app"
+      "bundleIdentifier": "com.t4.app"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.wae.app"
+      "package": "com.t4.app"
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "extra": {
+      "eas": {
+        "projectId": "7a375b31-878e-4af4-9f41-d707aa6040eb"
+      }
     },
-    "plugins": [
-      "expo-router"
-    ]
+    "owner": "lokesh_kabra",
+    "plugins": ["expo-router"],
+    "experiments": {
+      "tsconfigPaths": true,
+      "typedRoutes": true
+    }
   }
 }

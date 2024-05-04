@@ -1,6 +1,14 @@
-/** @type {import('next').NextConfig} */
 const { withTamagui } = require('@tamagui/next-plugin')
 const { join } = require('path')
+const million = require('million/compiler')
+const pattycake = require('pattycake')
+const withPWA = require('@ducanh2912/next-pwa').default({
+  dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
+  register: true,
+  sw: 'service-worker.js',
+  swcMinify: true,
+})
 
 const boolVals = {
   true: true,
@@ -10,31 +18,24 @@ const boolVals = {
 const disableExtraction =
   boolVals[process.env.DISABLE_EXTRACTION] ?? process.env.NODE_ENV === 'development'
 
-console.log(`
+const disableBrowserLogs =
+  boolVals[process.env.DISABLE_BROWSER_LOGS] ?? process.env.NODE_ENV === 'production'
 
-Welcome to Tamagui!
+const enableMillionJS =
+  boolVals[process.env.ENABLE_MILLION_JS] ?? process.env.NODE_ENV === 'production'
 
-You can update this monorepo to the latest Tamagui release just by running:
+// Temporarily disabled, produces chatty logs
+const enablePattyCake = false
+// boolVals[process.env.ENABLE_PATTY_CAKE] ?? process.env.NODE_ENV === 'production'
 
-yarn upgrade:tamagui
-
-We've set up a few things for you.
-
-See the "excludeReactNativeWebExports" setting in next.config.js, which omits these
-from the bundle: Switch, ProgressBar Picker, CheckBox, Touchable. To save more,
-you can add ones you don't need like: AnimatedFlatList, FlatList, SectionList,
-VirtualizedList, VirtualizedSectionList.
-
-🐣
-
-Remove this log in next.config.js.
-
-`)
+// Enabling causes FOUC on page refreshes
+const optimizeCss = false
 
 const plugins = [
+  withPWA,
   withTamagui({
-    config: '../../packages/config/src/tamagui.config.ts',
-    components: ['tamagui', '@my/ui'],
+    config: './tamagui.config.ts',
+    components: ['tamagui', '@t4/ui'],
     importsWhitelist: ['constants.js', 'colors.js'],
     outputCSS: process.env.NODE_ENV === 'production' ? './public/tamagui.css' : null,
     logTimings: true,
@@ -44,19 +45,25 @@ const plugins = [
         return true
       }
     },
-    excludeReactNativeWebExports: ['Switch', 'ProgressBar', 'Picker', 'CheckBox', 'Touchable'],
   }),
 ]
 
 module.exports = function () {
   /** @type {import('next').NextConfig} */
   let config = {
+    // Uncomment if you want to use Cloudflare's Paid Image Resizing w/ Next/Image
+    // images: {
+    //   loader: 'custom',
+    //   loaderFile: './cfImageLoader.js',
+    // },
+    // Using Solito image loader without Cloudflare's Paid Image Resizing
+    images: {},
     typescript: {
       ignoreBuildErrors: true,
     },
     modularizeImports: {
       '@tamagui/lucide-icons': {
-        transform: `@tamagui/lucide-icons/dist/esm/icons/{{kebabCase member}}`,
+        transform: '@tamagui/lucide-icons/dist/esm/icons/{{kebabCase member}}',
         skipDefaultConversion: true,
       },
     },
@@ -66,9 +73,34 @@ module.exports = function () {
       'expo-linking',
       'expo-constants',
       'expo-modules-core',
+      'react-native-safe-area-context',
+      'react-native-reanimated',
+      'react-native-gesture-handler',
     ],
     experimental: {
+      /*
+       A few notes before enabling app directory:
+
+       - App dir is not yet stable - Usage of this for production apps is discouraged.
+       - Tamagui doesn't support usage in React Server Components yet (usage with 'use client' is supported).
+       - Solito doesn't support app dir at the moment - You'll have to remove Solito.
+       - The `/app` in this starter has the same routes as the `/pages` directory. You should probably remove `/pages` after enabling this.
+      */
+      optimizeCss,
+      webpackBuildWorker: true,
+      forceSwcTransforms: true,
       scrollRestoration: true,
+      swcPlugins: [
+        [
+          'next-superjson-plugin',
+          {
+            excluded: [],
+          },
+        ],
+      ],
+    },
+    compiler: {
+      removeConsole: disableBrowserLogs,
     },
   }
 
@@ -77,6 +109,19 @@ module.exports = function () {
       ...config,
       ...plugin(config),
     }
+  }
+
+  const millionConfig = {
+    auto: true,
+    mute: true,
+  }
+
+  if (enableMillionJS) {
+    config = million.next(config, millionConfig)
+  }
+
+  if (enablePattyCake) {
+    config = pattycake.next(config)
   }
 
   return config

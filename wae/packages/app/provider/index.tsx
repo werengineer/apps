@@ -1,32 +1,35 @@
-import { CustomToast, TamaguiProvider, TamaguiProviderProps, ToastProvider, config } from '@my/ui'
-import { useColorScheme } from 'react-native'
+import { Session } from '@supabase/supabase-js'
+import { CustomToast, ToastProvider } from '@t4/ui'
+import { AuthProvider } from './auth'
+import { SafeAreaProvider } from './safe-area'
+import { SolitoImageProvider } from './solito-image'
+import { TamaguiProvider } from './tamagui'
+import { TamaguiThemeProvider } from './theme'
+import { ToastViewport } from './toast-viewport'
+import { TRPCProvider } from './trpc'
 
-import { ToastViewport } from './ToastViewport'
-
-export function Provider({ children, ...rest }: Omit<TamaguiProviderProps, 'config'>) {
-  const scheme = useColorScheme()
+export function Provider({
+  children,
+  initialSession,
+}: {
+  children: React.ReactNode
+  initialSession: Session | null
+}) {
   return (
-    <TamaguiProvider
-      config={config}
-      disableInjectCSS
-      defaultTheme={scheme === 'dark' ? 'dark' : 'light'}
-      {...rest}
-    >
-      <ToastProvider
-        swipeDirection="horizontal"
-        duration={6000}
-        native={
-          [
-            /* uncomment the next line to do native toasts on mobile. NOTE: it'll require you making a dev build and won't work with Expo Go */
-            // 'mobile'
-          ]
-        }
-      >
-        {children}
-
-        <CustomToast />
-        <ToastViewport />
-      </ToastProvider>
-    </TamaguiProvider>
+    <TamaguiThemeProvider>
+      <TamaguiProvider>
+        <SafeAreaProvider>
+          <SolitoImageProvider>
+            <ToastProvider swipeDirection='horizontal' duration={6000} native={['mobile']}>
+              <AuthProvider initialSession={initialSession}>
+                <TRPCProvider>{children}</TRPCProvider>
+                <CustomToast />
+                <ToastViewport />
+              </AuthProvider>
+            </ToastProvider>
+          </SolitoImageProvider>
+        </SafeAreaProvider>
+      </TamaguiProvider>
+    </TamaguiThemeProvider>
   )
 }
